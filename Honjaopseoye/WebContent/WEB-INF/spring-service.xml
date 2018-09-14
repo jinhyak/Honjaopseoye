@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+	">
+	<bean id="message-source" class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basename">
+			<value>messages_ko_KR</value>
+		</property>
+	</bean>
+	<!-- aop 등록 -->
+	<!-- 로직단(point-cut) -->
+	<aop:config>
+		<aop:pointcut expression="execution(* fp.honja.*Logic.*(..))" id="point-cut"/>
+		<aop:advisor advice-ref="tx-advice" pointcut-ref="point-cut"/>
+	</aop:config>
+	<!-- 트랜잭션 매니저 등록 -->
+	<tx:advice id="tx-advice" transaction-manager="transactionManager">
+		<tx:attributes>
+<!-- 메소드 이름앞에 cud가 붙으면 묶음처리(한꺼번에 커밋)
+	cud가 아니면 건건이 커밋처리됨. 자바코딩 없이도... 자동으로 알아서...  -->
+			<tx:method name="cud*"/>
+			<tx:method name="do*"/>
+		</tx:attributes>
+	</tx:advice>
+	<!-- <bean id = "board-logic" class="fp.honja.BoardLogic"/> -->
+</beans>

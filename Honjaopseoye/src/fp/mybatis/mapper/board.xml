@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mybatis.mapper.boardMapper">
+	<parameterMap id="pBMVO" type="com.vo.BoardMasterVO">
+		<parameter property="b_no" javaType="int" mode="IN"/>
+		<parameter property="b_title" javaType="java.lang.String" mode="IN"/>
+		<parameter property="b_name" javaType="java.lang.String" mode="IN"/>
+		<parameter property="b_content" javaType="java.lang.String" mode="IN"/>
+		<parameter property="b_date" javaType="java.lang.String" mode="IN"/>
+		<parameter property="b_hit" javaType="int" mode="IN"/>
+		<parameter property="b_group" javaType="int" mode="IN"/>
+		<parameter property="b_pos" javaType="int" mode="IN"/>
+		<parameter property="b_step" javaType="int" mode="IN"/>
+		<parameter property="b_pwd" javaType="java.lang.String" mode="IN"/>
+	</parameterMap>
+	<parameterMap id="pBSVO" type="com.vo.BoardSubVO">
+		<parameter property="b_no" javaType="int" mode="IN"/>
+		<parameter property="b_seq" javaType="int" mode="IN"/>
+		<parameter property="b_img" javaType="java.lang.String" mode="IN"/>
+		<parameter property="b_file" javaType="java.lang.String" mode="IN"/>
+		<parameter property="b_size" javaType="double" mode="IN"/>
+	</parameterMap>
+	<resultMap id="rBMVO" type="com.vo.BoardMasterVO">
+		<id property="b_no" column="b_no" />
+		<result property="b_title" column="b_title" />
+		<result property="b_name" column="b_name" />
+		<result property="b_content" column="b_content" />
+		<result property="b_date" column="b_date" />
+		<result property="b_hit" column="b_hit" />
+		<result property="b_group" column="b_group" />
+		<result property="b_pos" column="b_pos" />
+		<result property="b_step" column="b_step" />
+		<result property="b_pwd" column="b_pwd" />
+		<association property="bsVO" resultMap="rBSVO" /> 
+	</resultMap>
+	<resultMap id="rBSVO" type="com.vo.BoardSubVO">
+		<id property="b_no" column="b_no" />
+		<id property="b_seq" column="b_seq" />
+		<result property="b_img" column="b_img" />
+		<result property="b_file" column="b_file" />
+	</resultMap>	
+	<select id="totalCount" parameterType="int" resultType="int">
+		SELECT count(*) total
+		 FROM boardMaster bm, boardSub bs
+		WHERE bm.b_no = bs.b_no(+) 	
+	</select>
+	<update id="hitUpdate" parameterType="map">
+		update boardMaster
+		   set b_hit = b_hit + 1
+		 where b_no =#{b_no}
+	</update>
+	<insert id="boardMInsert" parameterMap="pBMVO">
+		INSERT INTO boardmaster(b_no, b_name, b_title, b_content
+		                       ,b_group, b_pos, b_step
+		                       ,b_date, b_pwd)
+		                 VALUES(#{b_no}, #{b_name}, #{b_title}, #{b_content}
+		                       ,#{b_group}, #{b_pos}, #{b_step}
+		                       ,to_char(sysdate, 'YYYY-MM-DD'),#{b_pwd})
+	</insert>
+	<insert id="boardSInsert" parameterMap="pBSVO">
+		INSERT INTO boardsub(b_no, b_seq, b_file, b_img)
+		                 VALUES(#{b_no}, 1, #{b_file}, #{b_img})
+	</insert>
+<!-- 그룹번호 채번하는 쿼리문 추가(새글쓰기에서 필요) -->
+	<select id="getBno" parameterType="map" resultType="int">
+	SELECT seq_board_no.nextval
+      FROM dual
+	</select>
+	<select id="getGroup" parameterType="map" resultType="int">
+	SELECT 
+      NVL((SELECT /*+index_desc(boardmaster iboardM_group)*/ b_group
+            FROM boardmaster
+           WHERE rownum = 1
+             AND b_group > 0),0)+1 b_group
+      FROM dual
+	</select>
+<!-- 	<statement id="stepUpdate" parameterType="map" resultType="map">
+		update boardMaster
+		      set b_step = b_step+1
+		  where b_group = #{b_group} 45(read.jsp)
+		     and b_step > #{b_step}   2(read.jsp)		
+	</statement> -->
+	<update id="boardMUpdate" parameterType="map">
+		update boardMaster
+		      set b_title = #{b_title}
+		         ,b_name = #{b_name}
+		         ,b_content = #{b_content}
+		         ,b_pwd = #{b_pwd}
+		  where b_no = #{b_no} 
+	</update>
+	<update id="stepUpdate" parameterType="map">
+		update boardMaster
+		      set b_step = b_step+1
+		  where b_group = #{b_group} <!-- 45(read.jsp) -->
+		     and b_step > #{b_step}   <!-- 2(read.jsp)	 -->
+	</update>
+	<select id="getBoardList" parameterType="map" resultMap="rBMVO">
+		SELECT
+		      a.b_no, a.b_title, a.b_name, a.b_content
+		     ,a.b_date, a.b_hit, NVL(a.b_file,'없음') b_file, a.b_pwd
+		     ,a.b_group, a.b_pos, a.b_step, a.rno
+		  FROM (
+		        SELECT
+		              bm.b_no, bm.b_title, bm.b_name, bm.b_content
+		             ,bm.b_date, bm.b_hit, NVL(bs.b_file,'없음') b_file, bm.b_pwd
+		             ,bm.b_group, bm.b_pos, bm.b_step, rownum rno
+		         FROM boardMaster bm, boardSub bs
+		        WHERE bm.b_no = bs.b_no(+)   
+		       )a 
+		<where>       
+	 	<if test='b_no!=null'>
+	     		AND a.b_no = #{b_no}
+	 	</if>		
+	 	<if test='column != null and column.equals("b_title")'>
+	     		AND a.b_title LIKE '%'||#{sb_keyword}||'%'
+	 	</if>		
+	 	<if test='column != null and column.equals("b_content")'>
+	     		AND a.b_content LIKE '%'||#{sb_keyword}||'%'
+	 	</if>		
+	 	<if test='column != null and column.equals("b_name")'>
+	     		AND a.b_name LIKE '%'||#{sb_keyword}||'%'
+	 	</if>	
+	 	<if test='start>0'>
+	 		<![CDATA[ AND a.rno >= #{start} ]]>
+	 	</if>		
+	 	<if test='end>0'>
+	     	<![CDATA[ AND a.rno <= #{end} ]]>
+	 	</if>	
+	 	</where>
+	 	ORDER BY a.b_group desc, a.b_step asc	
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+

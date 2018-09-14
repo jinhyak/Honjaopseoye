@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<mappers>
+	<!-- 경로를 복사할 때 /이 아닌 .으로 찍히지 않게 조심하자. -->
+		<mapper resource="com/mybatis/mapper/board.xml"/>
+		
+	</mappers>
+</configuration>
