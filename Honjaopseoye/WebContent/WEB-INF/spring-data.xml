@@ -36,7 +36,5 @@
 <!-- ====================================================================== -->
 <!-- DAO Bean Create -->
 <!-- ====================================================================== -->
-	<bean id="<!-- sqlMapBoardDao -->" class="fp.honja.">
-		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
-	</bean>
+
 </beans>
