@@ -179,6 +179,10 @@ public abstract class AbstractLogic {
 			int result= mdao.delete(pMap);
 			rMap.put("int", result);
 		}
+		else if("update".equals(Daoname)) {
+			int result = mdao.update(pMap);
+			rMap.put("int", result);
+		}
 		else {
 			logger.info("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ DAO클래스 호출 실패 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 			rMap = null;

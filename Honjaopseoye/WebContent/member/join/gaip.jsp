@@ -32,7 +32,6 @@
 		$('#pw').keyup(function(){
 			keyup();
 		});
-		setDateBox()
 	})
 	function keyup(){
 		var pw = $('#pw').val();
@@ -101,20 +100,6 @@
 		var h_id = $('#h_id').val();
 		var h_pw = $('#h_pw').val();
 		var h_tel = $('#h_tel').val();
-		var year = $('#year').val();
-		var mont = $('#month').val()
-		var day = $('#day').val();
-		
-		
-		//생년월일 6자리 처리
-		if(day.length==1){
-			day = '0'+day
-		}
-		if(mont.length==1){
-			mont = '0'+mont
-		}		
-		var birth = year+mont+day
-		alert(birth)
 		
 		if(user_name==''||user_name==null){
 			alert('이름란에 공백을 사용할 수 없습니다.');
@@ -134,10 +119,8 @@
 		else{
 			var email = $('#email').val()+"@"+$('#domain').text();
 			var hoby = $('#mem_hobby').val();
-			alert(hoby)
 			var job = $('#mem_job').val();
-			alert(job)
-			var param = $('#form_login').serialize()+"&mem_email="+email+"&mem_hobby="+hoby+"&mem_job="+job+"&mem_birth="+birth;
+			var param = $('#form_login').serialize()+"&mem_email="+email+"&mem_hobby="+hoby+"&mem_job="+job;
 			alert('회원가입');
 			$.ajax({
 				 method:"post"
@@ -168,11 +151,11 @@
 		alert(gender)
 	}
 </script>
-	<div class="ui middle aligned center aligned grid bagic segment" style="margin-top:50px">
-		<div class="column" style="width: 60%">
-				<img src="../../image/logo.png" class="image"style="width:280px;">
+	<div class="ui middle center aligned grid bagic segment" style="margin-top:100px;border:hidden">
+		<div class="column" style="width: 60%;border:hidden">
+				<img src="../../image/logo.png" class="image"style="width:280px;border:hidden">
 			<form class="ui large form" id="form_login">
-				<div class="ui stacked segment"style="margin-bottom:50px">
+				<div class="ui stacked left aligned segment"style="margin-bottom:50px">
 <!--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@# 이름 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
 					<div class="field">
 						<div class="ui inverted labeled left icon input" style="width: 100%;">
@@ -190,11 +173,51 @@
 					<div class="ui tel check" id="tel_check"></div>
 <!--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@# 생년 월일 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->		
 					<div class="field">
-							    <select class="ui dropdown" name="year" id="year" title="년도" style="width:15%"></select>    
-					    	    <select class="ui dropdown" name="month" id="month" title="월"style="width:15%"></select>
-					        	<select class="ui dropdown" name="day" id="day" title="일" style="width:15%"></select>
+					<div class="ui label">
+						<div>생년월일</div>
+						<input type="text" id="datepicker" placeholder="날짜를 입력하세요" readonly="readonly" name="mem_birth" style="width:200px">
+					</div>
 					</div>
 					<div class="ui birth" id="birth"></div>
+<!--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@# 취미 직업 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
+					<div class="field">
+						<div class="ui label">직업
+								<div class="ui selection dropdown addr">
+										<input type="hidden" value="1109" id="mem_job"> <i class="dropdown icon"></i>
+										<div class="text" id="hobby">무직</div>
+										<div class="menu" id="menu_job">
+											<div class="item" data-value="1100">무직</div>
+											<div class="item" data-value="1101">학생</div>
+											<div class="item" data-value="1102">운동선수</div>
+											<div class="item" data-value="1103">예술가</div>
+											<div class="item" data-value="1104">프로그래머</div>
+											<div class="item" data-value="1105">사무직</div>
+											<div class="item" data-value="1106">영업직</div>
+											<div class="item" data-value="1107">공무원</div>
+											<div class="item" data-value="1108">서비스직</div>
+										</div>
+								</div>
+						</div>
+						<div class="ui label">취미
+								<div class="ui selection dropdown addr">
+									<input type="hidden" value="1200" id="mem_hobby"> <i class="dropdown icon"></i>
+										<div class="text" id="hobby">기타</div>
+										<div class="menu" id="menu_hobby">
+											<div class="item" data-value="1209">기타</div>
+											<div class="item" data-value="1200">운동</div>
+											<div class="item" data-value="1201">영화</div>
+											<div class="item" data-value="1202">음악</div>
+											<div class="item" data-value="1203">춤</div>
+											<div class="item" data-value="1204">독서</div>
+											<div class="item" data-value="1205">조립|제작</div>
+											<div class="item" data-value="1206">여행</div>
+											<div class="item" data-value="1207">레저</div>
+											<div class="item" data-value="1208">미술</div>
+										</div>
+								</div>
+						</div>
+					</div>
+					<div class="ui pw check" id="hob_check"></div>
 <!--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@# ID #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
 					<div class="field">
 						<div class="ui left icon input" style="width: 100%;">
@@ -207,7 +230,7 @@
 
 					<div class="field">
 						<div class="ui left icon input" style="width: 100%;">
-							<i class="lock icon"></i> <input type="password" name="mem_pw" id="pw" placeholder="비밀번호를 입력하세요">
+							<i class="lock icon"></i> <input type="password"  name="mem_pw" id="pw" placeholder="비밀번호를 입력하세요">
 						</div>
 					</div>
 					<div id="f_p" class="field">
@@ -216,42 +239,6 @@
 							<input type="password" id="pw_compare" placeholder="비밀번호 확인"> 
 							<input type="hidden" id="h_pw" value="0">
 						</div>
-					</div>
-					<div class="ui pw check" id="pw_check"></div>
-<!--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@# 취미 직업 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
-					<div class="field">
-								<div class="ui selection dropdown addr">
-										<input type="hidden" value="1109" id="mem_job"> <i class="dropdown icon"></i>
-										<div class="text" id="hobby">직업</div>
-										<div class="menu" id="menu_job">
-											<div class="item" data-value="1109">무직</div>
-											<div class="item" data-value="1100">학생</div>
-											<div class="item" data-value="1101">운동선수</div>
-											<div class="item" data-value="1102">예술가</div>
-											<div class="item" data-value="1103">프로그래머</div>
-											<div class="item" data-value="1104">생산직</div>
-											<div class="item" data-value="1105">사무직</div>
-											<div class="item" data-value="1106">영업직</div>
-											<div class="item" data-value="1107">공무원</div>
-											<div class="item" data-value="1108">서비스직</div>
-										</div>
-								</div>
-								<div class="ui selection dropdown addr">
-									<input type="hidden" value="1200" id="mem_hobby"> <i class="dropdown icon"></i>
-										<div class="text" id="hobby">취미</div>
-										<div class="menu" id="menu_hobby">
-											<div class="item" data-value="1200">기타</div>
-											<div class="item" data-value="1201">운동</div>
-											<div class="item" data-value="1202">영화</div>
-											<div class="item" data-value="1203">음악</div>
-											<div class="item" data-value="1204">춤</div>
-											<div class="item" data-value="1205">독서</div>
-											<div class="item" data-value="1206">조립|제작</div>
-											<div class="item" data-value="1207">여행</div>
-											<div class="item" data-value="1208">레저</div>
-											<div class="item" data-value="1209">미술</div>
-										</div>
-								</div>
 					</div>
 					<div class="ui pw check" id="pw_check"></div>
 <!--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@# email #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
@@ -429,28 +416,30 @@
 		$('#modal_addr')
 		.modal('hide');
 	}
-//////////////////////////////////날짜 계산///////////////////////////////
-	function setDateBox(){
-	    var dt = new Date();
-	    var year = "";
-	    var com_year = dt.getFullYear();
-	    $("#year").append("<option value=''>년도</option>");
-	    // 올해 기준으로 -60년부터 보여준다.
-	    for(var y=(com_year-60);y<=(com_year);y++){
-	        $("#year").append("<option value='"+ y +"'>"+ y + " 년" +"</option>");
-	    }
-	    // 월 뿌려주기(1월부터 12월)
-	    var month;
-	    $("#month").append("<option value=''>월</option>");
-	    for(var i=1;i<=12;i++){
-	        $("#month").append("<option value='"+i+"'>"+i+" 월" +"</option>");
-	    }
-	    var day;
-	    $("#day").append("<option value=''>일</option>");
-	    for(var i=1;i<=31;i++){
-	        $("#day").append("<option value='"+ i +"'>"+ i + " 일" +"</option>");
-	    }
-	}
+	$(function() {
+        //input을 datepicker로 선언
+        $("#datepicker").datepicker({
+            dateFormat: 'yy-mm-dd' //Input Display Format 변경
+            ,showOtherMonths: true //빈 공간에 현재월의 앞뒤월의 날짜를 표시
+            ,showMonthAfterYear:true //년도 먼저 나오고, 뒤에 월 표시
+            ,changeYear: true //콤보박스에서 년 선택 가능
+            ,changeMonth: true //콤보박스에서 월 선택 가능                
+            ,showOn: "both" //button:버튼을 표시하고,버튼을 눌러야만 달력 표시 ^ both:버튼을 표시하고,버튼을 누르거나 input을 클릭하면 달력 표시  
+            ,buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif" //버튼 이미지 경로
+            ,buttonImageOnly: true //기본 버튼의 회색 부분을 없애고, 이미지만 보이게 함
+            ,buttonText: "선택" //버튼에 마우스 갖다 댔을 때 표시되는 텍스트                
+            ,yearSuffix: "년" //달력의 년도 부분 뒤에 붙는 텍스트
+            ,monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'] //달력의 월 부분 텍스트
+            ,monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'] //달력의 월 부분 Tooltip 텍스트
+            ,dayNamesMin: ['일','월','화','수','목','금','토'] //달력의 요일 부분 텍스트
+            ,dayNames: ['일요일','월요일','화요일','수요일','목요일','금요일','토요일'] //달력의 요일 부분 Tooltip 텍스트
+            ,minDate: "-60Y" //최소 선택일자(-1D:하루전, -1M:한달전, -1Y:일년전)
+            ,maxDate: "+1D" //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)                
+        });                    
+        
+        //초기값을 오늘 날짜로 설정
+        $('#datepicker').datepicker(); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)            
+    });
 </script>
 <%@include file="../../include/bottom.jsp" %>
 </body>

@@ -5,8 +5,8 @@
 	String s_name = null;
 	String s_id = null;
 	String s_pw = null;
-	if (session.getAttribute("memList") != null) {
 		List<Map<String, Object>> memList = (List<Map<String, Object>>) session.getAttribute("memList");
+	if (memList != null) {
 		s_name = memList.get(0).get("MEM_NAME").toString();
 		s_id = memList.get(0).get("MEM_ID").toString();
 		s_pw = memList.get(0).get("MEM_PW").toString();
@@ -20,19 +20,19 @@
 	var s_name = '<%=s_name%>';
 	var s_id = '<%=s_id%>'
 	var s_pw = '<%=s_pw%>'
-	var hj_id = $("#hj_id").val()
-	var hj_pw = $("#hj_pw").val()
 	function login() {
 		//alert(s_name);
 		//alert("로그인");
+		var id = $("#mem_id").val()
+		var pw = $("#mem_pw").val()
 		
-		if($("#hj_id").val()==null || $("#hj_id").val()==""){
+		if(id==null||id==""){
 			alert("아이디를 입력해주세요.");
-			$("#hj_id").focus();
+			$("#mem_id").focus();
 			return false;
-		}else if($("#hj_pw").val() == null ||  $("#hj_pw").val() == ""){
+		}else if(pw==null||pw==""){
 			alert("비밀번호를 입력해주세요.");
-			$("#hj_pw").focus();
+			$("#mem_pw").focus();
 			return false;
 		}else{
 			$("#f_login").submit();
@@ -45,6 +45,8 @@
 </head>
 <body>
 <%@include file="../../include/include/subtop.jsp" %>
+
+<div class="ui container" style="height:800px;margin-top:70px">
 	<div style="height: 100px;"></div>
 	<div align="center">
 		<a href="../result/Outline.jsp" class="ui medium image">
@@ -56,21 +58,21 @@
 		<div style="text-align: center; padding-bottom: 10px;">
 			<div class="ui container">
 				<div class="ui big icon input">
-					<input type="text" id="hj_id" name="mem_id" placeholder="아이디" style="width: 400px; height: 50px;">
+					<input type="text" id="mem_id" name="mem_id" placeholder="아이디" style="width: 400px; height: 50px;">
 				</div>
 			</div>
 		</div>
 		<div style="text-align: center; padding-bottom: 10px;">
 			<div class="ui container">
 				<div class="ui big icon input">
-					<input type="text" id="hj_pw" name="mem_pw" placeholder="비밀번호" style="width: 400px; height: 50px;">
+					<input type="text" id="mem_pw" name="mem_pw" placeholder="비밀번호" style="width: 400px; height: 50px;">
 				</div>
 			</div>
 		</div>	
 			<div style="text-align: center; padding-left: 3px; padding-top: 10px;">
 				<div class="ui container">
 					<div class="ui big icon input">
-						<button class="ui teal button" type="button" id="btn_login" name="btn_login" onClick="login()" style="width: 400px; height: 50px;">로그인</button>
+						<button class="ui gray button" type="button" id="btn_login" name="btn_login" onClick="login()" style="width: 400px; height: 50px;">로그인</button>
 					</div>
 				</div>
 			</div>
@@ -83,11 +85,11 @@
 			<a href="javascript:alert('비번찾기')">비번찾기</a>
 		</div>
 	</div>
-	<div class="ui container" style="text-align: center;">
-		<div class="column">
+	<div class="ui container" style="text-align: center;width:222px">
+		<div class="row">
 			<img src="../../image/naver_Id.PNG" width="222px" style="padding-bottom: 5px;">
 		</div>
-		<div class="column" style="text-align: center;">
+		<div class="row" style="text-align: center;">
 			<a id="kakao-login-btn" style="justify-content:center;"></a>
 		</div>
 	</div>
@@ -109,6 +111,7 @@
 		});
 		//]]>
 	</script>
+</div>
 	<%@include file="../../include/bottom.jsp" %>
 </body>
 </html>

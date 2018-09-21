@@ -19,19 +19,22 @@
 		%>	
 			<%@ include file="../include/logout_top.jsp" %>
 		<% 	
-			}else if(smem_name!=null || smem_name!=""){
+			}else {
 		%>
 			<%@ include file="../include/top.jsp" %>
 		<% 	
 			}
 		%>
 
-
 <!--  -->
-
-  <button id="btn1" style="width:910px; height:900px;"><img src="./1.png" style="width:950px; height:900px;"></button>
-  <button type="button" id="btn2" style="width:910px; height:900px;"><img src="./2.jpg"style="width:950px; height:900px;"></button>
-
+<div class="ui two column stackable grid" style="height:650px">
+    <div class="column">
+		<a  id="btn1" style="width:100%; height:100%;"><img src="../image/person.PNG" style="width:100%; height:100%;"></a>
+    </div>
+    <div class="column">
+ 		 <a id="btn2" style="width:100%; height:100%;"><img src="../image/with.jpg"style="width:100%; height:100%;"></a>
+    </div>
+</div>
 <!--  -->
 
 <%@ include file="../../include/bottom.jsp" %>

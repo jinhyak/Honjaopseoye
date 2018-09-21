@@ -48,8 +48,7 @@ public class DispatcherServlet extends HttpServlet{
 		}
 		if(view==null) {
 			logger.info("view가 널입니다");
-			view = new Model();
-			return;//view가 널일경우 리턴시킴(메소드종료)
+			view = new Model();//error page 로 가게해줌
 		}
 //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 보낼 방식과 보낼 페이지를 결정해줌 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 		else {

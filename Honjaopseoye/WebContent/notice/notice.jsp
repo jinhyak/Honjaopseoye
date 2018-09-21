@@ -44,7 +44,7 @@
 								<a href="./qna.jsp"> QnA </a>
 							</div>
 						</div>
-					</div>	
+					</div>
 				</div>
 			</div>
 		</div>

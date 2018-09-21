@@ -39,6 +39,7 @@ public class MemberDao implements DaoForm{
 		int result = 0;
 		sqls = dbmgr.connection();
 		result = sqls.insert("join", pMap);
+		result = sqls.insert("grade", pMap);
 		sqls.commit();
 		sqls.close();
 		logger.info(result);
@@ -47,8 +48,13 @@ public class MemberDao implements DaoForm{
 
 	@Override
 	public int update(Map<String, Object> pMap) throws IOException {
-		// TODO Auto-generated method stub
-		return 0;
+		int result = 0;
+		sqls = dbmgr.connection();
+		result = sqls.delete("membermap.update", pMap);
+		sqls.commit();
+		logger.info("result : "+result);
+		sqls.close();
+		return result;
 	}
 
 	@Override

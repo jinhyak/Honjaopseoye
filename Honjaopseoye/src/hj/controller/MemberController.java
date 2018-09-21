@@ -1,6 +1,7 @@
 package hj.controller;
 
 import java.util.HashMap;
+import org.apache.log4j.*;
 import java.util.List;
 import java.util.Map;
 
@@ -14,7 +15,7 @@ import hj.common.Model;
 import hj.logic.Logic;
 
 public class MemberController implements ControllerForm{
-
+	Logger logger = Logger.getLogger(this.getClass());
 	@Override
 	public Model excute(HttpServletRequest req, HttpServletResponse res, Map<String, String> map) throws Exception {
 		Logic logic = new Logic(map);
@@ -28,9 +29,10 @@ public class MemberController implements ControllerForm{
 		hmb.bind(pMap);
 		if("empty".equals(map.get("Logicname"))) {
 			rMap = logic.empty(pMap);
-			
+			logger.info(rMap);
 			if("select".equals(map.get("Daoname"))) {
 				HttpSession mem_session = req.getSession();
+				logger.info(rMap.get("list"));
 				mem_session.setAttribute("memList", rMap.get("list"));
 				String path = "../../main/main.jsp";
 				view.setPath(path);
@@ -43,6 +45,10 @@ public class MemberController implements ControllerForm{
 				else {
 					view.setPath("../../member/meminfo/mdelete.jsp");
 				}
+			}
+			else if("update".equals(map.get("Daoname"))){
+				int result = (int)rMap.get("int");
+				view.setPath("../../member/meminfo/result/result.jsp?result="+result);
 			}
 			else {
 				int result= (int)rMap.get("int");

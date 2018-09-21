@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+<%
+	session.getAttribute("memList");
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -12,7 +15,6 @@
     <div class="ui container">
       <a href="../main/main.jsp" class="header item">
         <img class="logo" src="../image/logo.png" style="width:100px; heigth:100px">
-        혼자옵서예
       </a>
       <a href="../main/main.jsp" class="item">Home</a>
       <div class="ui simple dropdown item">
@@ -29,11 +31,13 @@
             	로그인
             <div class="menu">
               <a class="item" href="../member/login/login.jsp">로그인</a>
-              <a class="item" href="../member/login/result/logout.jsp">로그아웃</a>
+              <a class="item" href="../member/login/logout.jsp">로그아웃</a>
             </div>
           </div>
         </div>
       </div>
+      <div class="right item">level</div>
+      <div class="item">point</div>
     </div>
   </div>
 </body>

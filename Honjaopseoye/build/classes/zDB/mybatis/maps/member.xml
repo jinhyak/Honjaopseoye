@@ -14,10 +14,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		VALUES (#{mem_id},#{mem_tel},#{mem_name},#{mem_addr},#{mem_email},#{mem_pw},#{mem_birth},#{mem_gender},#{mem_hobby},#{mem_job})
 	</insert>
 	<select id="select" parameterType="map" resultType="map">
-		select * from members where mem_id = #{mem_id,jdbcType=VARCHAR} and mem_pw = #{mem_pw,jdbcType=VARCHAR}
+		select * from members where mem_id=#{mem_id} and mem_pw=#{mem_pw}
 	</select>
 	<delete id="delete" parameterType="java.util.Map">
 		DELETE FROM members
 		WHERE mem_id = #{mem_id}
 	</delete>
+	<insert id="grade" parameterType="map">
+		INSERT INTO grade (grade_id, grade_level, grade_point)
+		VALUES (#{mem_id},'브론즈',0)
+	</insert>
+	<update id="update" parameterType="map">
+		 UPDATE members SET mem_name=#{mem_name,jdbcType=VARCHAR}, mem_tel=#{mem_tel,jdbcType=VARCHAR}, mem_addr=#{mem_addr,jdbcType=VARCHAR}, 
+		 					mem_email=#{mem_email,jdbcType=VARCHAR}, mem_gender=#{mem_gender,jdbcType=VARCHAR}, mem_birth=#{mem_birth,jdbcType=VARCHAR}, mem_hobby=#{mem_hobby,jdbcType=VARCHAR}, mem_job=#{mem_job,jdbcType=VARCHAR}
+	     WHERE mem_id=#{mem_id,jdbcType=VARCHAR}
+	</update>
 </mapper>

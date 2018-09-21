@@ -43,7 +43,7 @@
        <!-- 나중에 컨테이너 처리 할거임 -->
        		<div class="ui text container"> 
        	  <%=s_name%>님 환영합니다.
-          <a class="ui inverted button" href="javascript:logout()">로그아웃</a>
+          <a class="ui inverted button" href="../member/login/logout.jsp">로그아웃</a>
           <a class="ui inverted button" href="../member/meminfo/mlist.jsp">정보수정</a>
         	</div>
         </div>
@@ -61,16 +61,5 @@
        <br>
     </div>
 </div>
-<script type="text/javascript">
-	function logout(){
-		$.ajax({
-			 url:"../member/login/result/logout.jsp"
-			,success:function(data){
-				location.href="../main/main.jsp"
-			}
-		})
-			
-	}
-</script>
 </body>
 </html>
