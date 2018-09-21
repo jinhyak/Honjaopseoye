@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="membermap">
+	<select id="tel_sel" resultType="int" parameterType="map">
+		select nvl2((select mem_id from members where mem_tel=#{mem_tel}),0,1) from dual
+	</select>
+	<select id="id_sel" resultType="int" parameterType="map">
+		select nvl2((select mem_id from members where mem_id=#{mem_id}),0,1) from dual
+	</select>
+	<insert id="join" parameterType="map">
+		INSERT INTO members(mem_id, mem_tel, mem_name, mem_addr, mem_email, mem_pw, mem_birth,mem_gender,mem_hobby,mem_job)
+		VALUES (#{mem_id},#{mem_tel},#{mem_name},#{mem_addr},#{mem_email},#{mem_pw},#{mem_birth},#{mem_gender},#{mem_hobby},#{mem_job})
+	</insert>
+	<select id="select" parameterType="map" resultType="map">
+		select * from members where mem_id = #{mem_id,jdbcType=VARCHAR} and mem_pw = #{mem_pw,jdbcType=VARCHAR}
+	</select>
+	<delete id="delete" parameterType="java.util.Map">
+		DELETE FROM members
+		WHERE mem_id = #{mem_id}
+	</delete>
+</mapper>
