@@ -1,7 +1,65 @@
+<%@page import="java.util.Map"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+<%
+String mem_id = null;
+String mem_name = null;
+String mem_addr = null;
+String mem_email = null;
+String mem_hobby = null;
+String mem_job = null;
+String mem_tel = null;
+String mem_birth = null;
+String mem_gender = null;
+String emails[];
+String email = null;
+String domain = null;
+String mem_pw = null;
+String lv = null;
+String pt = null;
+	List<Map<String,Object>> member = (List<Map<String,Object>>)session.getAttribute("memList");
+	if(member!=null){
+		mem_id = (String)member.get(0).get("MEM_ID");
+		mem_name = (String)member.get(0).get("MEM_NAME");
+		mem_addr = (String)member.get(0).get("MEM_ADDR"); 
+		mem_email = (String)member.get(0).get("MEM_EMAIL"); 
+		mem_hobby = (String)member.get(0).get("MEM_HOBBY"); 
+		mem_job = (String)member.get(0).get("MEM_JOB"); 
+		mem_tel = (String)member.get(0).get("MEM_TEL");
+		mem_birth = (String)member.get(0).get("MEM_BIRTH");
+		mem_gender = (String)member.get(0).get("MEM_GENDER");
+		mem_pw = (String)member.get(0).get("MEM_PW");
+		lv = (String)member.get(0).get("GRADE_LEVEL");
+		pt = (String)member.get(0).get("GRADE_POINT");
+		emails = mem_email.split("@");
+		email = emails[0];
+		domain = "@"+emails[1];
+	}
+	else{
+		mem_id = "비회원";
+		lv="없음";
+		pt="0";
+	}
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+<script type="text/javascript">
+var mem_id = '<%=mem_id%>'
+var mem_name = '<%=mem_name%>'
+var mem_addr = '<%=mem_addr%>'
+var mem_email = '<%=mem_email%>'
+var mem_hobby = '<%=mem_hobby%>'
+var mem_job = '<%=mem_job%>'
+var mem_tel = '<%=mem_tel%>'
+var mem_birth = '<%=mem_birth%>'
+var mem_gender = '<%=mem_gender%>'
+var email = '<%=email%>'
+var domain = '<%=domain%>'
+var mem_pw = '<%=mem_pw%>'
+var point = '<%=pt%>'
+var level = '<%=lv%>'
+</script>
 <head>
 <%@include file="./commonUI.jsp" %>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -17,7 +75,7 @@
       <div class="ui simple dropdown item">
       	  메뉴 <i class="dropdown icon"></i>
         <div class="menu">
-          <a class="item" href="../../member/meminfo/mlist.jsp">회원정보</a>
+          <a class="item" href="javascript:mlist()">회원정보</a>
           <a class="item" href="../../notice/notice.jsp">공지사항</a>
           <a class="item" href="#">혼자페이지</a>
           <a class="item" href="#">만남페이지</a>
@@ -33,9 +91,20 @@
           </div>
         </div>
       </div>
-      <div class="right item">level</div>
-      <div class="item">point</div>
+      <div class="right item"><script>document.write(level)</script></div>
+      <div class="item">point:<script>document.write(point)</script></div>
+      <div class="item"><script>document.write(mem_id)</script></div>
     </div>
   </div>
+  <script type="text/javascript">
+  	function mlist(){
+  		if(mem_id!='비회원'){
+  		location.href="../../member/meminfo/mlist.jsp";
+  		}
+  		else{
+  			alert("로그인 후 이용 가능합니다")
+  		}
+  	}
+  </script>
 </body>
 </html>

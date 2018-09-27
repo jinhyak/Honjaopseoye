@@ -17,8 +17,8 @@ import hj.logic.Logic;
 public class MemberController implements ControllerForm{
 	Logger logger = Logger.getLogger(this.getClass());
 	@Override
-	public Model excute(HttpServletRequest req, HttpServletResponse res, Map<String, String> map) throws Exception {
-		Logic logic = new Logic(map);
+	public Model excute(HttpServletRequest req, HttpServletResponse res, Map<String, String> wMap) throws Exception {
+		Logic logic = new Logic(wMap);
 		Model view = new Model();
 		HashMapBinder hmb = new HashMapBinder(req);
 		Map<String, Object> rMap = null;
@@ -27,26 +27,45 @@ public class MemberController implements ControllerForm{
 		Map<String, Object> pMap = new HashMap<String,Object>();
 //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ¼±¾ð  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 		hmb.bind(pMap);
-		if("empty".equals(map.get("Logicname"))) {
+		if("empty".equals(wMap.get("Logicname"))) {
 			rMap = logic.empty(pMap);
 			logger.info(rMap);
-			if("select".equals(map.get("Daoname"))) {
+			if("select".equals(wMap.get("Daoname"))) {
 				HttpSession mem_session = req.getSession();
 				logger.info(rMap.get("list"));
+				list = (List<Map<String,Object>>)rMap.get("list");
+				if(list.get(0)!=null) {
 				mem_session.setAttribute("memList", rMap.get("list"));
 				String path = "../../main/main.jsp";
 				view.setPath(path);
+				}
+				else {
+					view.setPath("../../main/main.jsp");
+				}
 			}
-			else if("delete".equals(map.get("Daoname"))) {
+			else if("login".equals(wMap.get("Daoname"))) {
+				String result = "";
+				result = (String)rMap.get("String");
+					if("1".equals(result)) {
+						view.setPath("./select.test?mem_id="+pMap.get("mem_id"));
+					}
+					else if("-1".equals(result)){
+						view.setPath("../../member/login/result/result.jsp?result="+result);
+					}
+					else if("0".equals(result)) {
+						view.setPath("../../member/login/result/result.jsp?result="+result);
+					}
+			}
+			else if("delete".equals(wMap.get("Daoname"))) {
 				int result = (int)rMap.get("int");
 				if(1==result) {
-					view.setPath("../../main/main.jsp");
+					view.setPath("../../member/login/logout.jsp");
 				}
 				else {
 					view.setPath("../../member/meminfo/mdelete.jsp");
 				}
 			}
-			else if("update".equals(map.get("Daoname"))){
+			else if("update".equals(wMap.get("Daoname"))){
 				int result = (int)rMap.get("int");
 				view.setPath("../../member/meminfo/result/result.jsp?result="+result);
 			}

@@ -1,3 +1,5 @@
+<%@page import="java.util.Map"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -47,12 +49,12 @@
 						</div>
 						<div class="right aligned column">
 							<div class="ui segment button" style="width:100%" onclick="location.href='./flist.jsp'">
-								<a href="#"> 친구 관리 </a>
+								<a href="#"> 친구 찾기 </a>
 							</div>
 						</div>
 						<div class="right aligned column">
 							<div class="ui segment button" style="width:100%" onclick="location.href='./fdelete.jsp'">
-								<a href="#"> 친구 삭제 </a>
+								<a href="#"> 친구 관리 </a>
 							</div>
 						</div>
 						<div class="right aligned column">
@@ -77,7 +79,7 @@
 						<div class="center aligned column">
 							<div class="ui segment">
 								<div class="ui large header">
-							 	         친구 관리
+							 	         친구 찾기
 								</div>
 							</div>
 						</div>
@@ -91,9 +93,9 @@
 									</div>
 									<div class="right aligned column">
 										<div class="ui left icon label input" style="margin-right:40px;border:solid">
-										  <input type="text" placeholder="친구를 검색하세요..">
+										  <input type="text" placeholder="친구를 검색하세요.." id="value" name="value">
 										  <i class="users icon"></i>
-										  <div class="ui label button">검색</div>
+										  <button class="ui label button" onclick="search()">검색</button>
 										</div>
 									</div>
 
@@ -102,52 +104,31 @@
 											<tr>
 												<th class="center aligned" style="width:20%" id="fri_id">친구 ID</th>
 												<th class="center aligned" style="width:20%" id="fri_name">친구 이름</th>
-												<th class="center aligned" style="width:20%" id="fri_age">친구 나이</th>
-												<th class="center aligned" style="width:20%" id="fri">친구 </th>
-												<th class="center aligned" style="width:20%" id="fri_del">삭제</th>
+												<th class="center aligned" style="width:20%" id="fri_age">친구 생일</th>
+												<th class="center aligned" style="width:20%" id="fri_email">친구 email</th>
+												<th class="center aligned" style="width:20%" id="fri_add">추가</th>
 											</tr>
 										</thead>
-					
-										<tbody>
-											<tr>
-												<td class="left aligned">Delmar</td>
-												<td>36</td>
-												<td>36g</td>
-												<td>2g</td>
-											</tr>
-											<tr>
-												<td class="left aligned">Louise</td>
-												<td>24</td>
-												<td>24g</td>
-												<td>29g</td>
-											</tr>
-											<tr>
-												<td class="left aligned">Terrell</td>
-												<td>22</td>
-												<td>11g</td>
-												<td>9g</td>
-											</tr>
-											<tr>
-												<td class="left aligned">Marion</td>
-												<td>7</td>
-												<td>35g</td>
-												<td>3g</td>
-											</tr>
-											<tr>
-												<td class="left aligned">Clayton</td>
-												<td>7</td>
-												<td>38g</td>
-												<td>20g</td>
-											</tr>
+										<tbody id="fri_search">
 										</tbody>
 									</table>
 									<script type="text/javascript">
-									var tdata = /* json포멧으로 처리 각 데이터들은 thead에 부여된 ID값으로. */	
-									$("#f_table").bootstraptable(function(){
-											for(var i=0;i<10;i++){
-												
-											}
-										})
+										function search(){
+												alert(mem_id);
+												var value="value="+$("#value").val()+"&mem_id="+mem_id;
+											$.ajax({
+												 method:"post"
+												,data:value
+												,url:"../../friend/empty/fri_select.test"
+												,success:function(data){
+													alert(data);
+													$("#fri_search").html(data);
+												}
+												,error:function(data){
+													alert("실패");
+												}
+											})
+										}
 									</script>
 									<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 여기만 바뀌면 됨 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 								</div>

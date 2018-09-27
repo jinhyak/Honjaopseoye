@@ -58,13 +58,11 @@
 									var zip = this.cells.item(1).innerHTML
 									alert(addr)
 									alert(zip)
-									
 									window.opener.document.getElementById("p_addr").value = addr;
 									window.opener.document.getElementById("p_zip").value = zip;
 									self.close();
 								}
 							};
-							
 							trs[i].onmouseout = function(){
 								this.className="listOut";
 							}

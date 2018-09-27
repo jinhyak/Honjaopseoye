@@ -42,13 +42,17 @@ public class DispatcherServlet extends HttpServlet{
 				logger.info("excute실행중");
 				view = ctr.excute(req, res, wMap);
 			} catch (Exception e) {
+				view = new Model();
 				logger.info("excute오류중");
+				view.setPath("../../main/main.jsp");
 				e.printStackTrace();
 			}
 		}
 		if(view==null) {
 			logger.info("view가 널입니다");
-			view = new Model();//error page 로 가게해줌
+			view = new Model();
+			view.setPath("../../test/error.jsp");
+			//error page 로 가게해줌
 		}
 //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 보낼 방식과 보낼 페이지를 결정해줌 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 		else {

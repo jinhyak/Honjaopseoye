@@ -1,36 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
-<%@page import="java.util.Map"%>
-<%@page import="java.util.List"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<%
-	List<Map<String,Object>> list = (List<Map<String,Object>>)session.getAttribute("memList");
-	String mem_id = null;
-	String mem_pw = null;
-	if(list != null){
-		mem_id = (String)list.get(0).get("MEM_ID");
-		mem_pw = (String)list.get(0).get("MEM_PW");
-	} else {
-%>
-<!-- <script type="text/javascript">
-	alert("로그인을 해야 이용할 수 있습니다.");
-	self.close();
-	location.href="../project/main.jsp";
-</script> -->
-<%
-	}
-%>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Insert title here</title>
 </head>
 <body>
  <%@ include file="../../include/include/subtop.jsp" %>
- <script type="text/javascript">
-	var mem_id = <%=mem_id %>
-	var mem_pw = <%=mem_pw %>
-</script>
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ header @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 <div class="ui header" style="margin-left: 150px;margin-right: 150px; margin-top: 100px;margin-bottom: 100px">
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ index @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
@@ -68,12 +45,12 @@
 						</div>
 						<div class="right aligned column">
 							<div class="ui segment button" style="width:100%" onclick="location.href='./flist.jsp'">
-								<a href="#"> 친구 관리 </a>
+								<a href="#"> 친구 찾기 </a>
 							</div>
 						</div>
 						<div class="right aligned column">
 							<div class="ui segment button" style="width:100%" onclick="location.href='./fdelete.jsp'">
-								<a href="#"> 친구 삭제 </a>
+								<a href="#"> 친구 관리 </a>
 							</div>
 						</div>
 						<div class="right aligned column">
@@ -103,7 +80,7 @@
 							</div>
 						</div>
 						<div class="center aligned column">
-							<div class="ui segment" style="width:100%;height:1000px">
+							<div class="ui segment" style="width:100%;height:100%">
 							
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 여기만 바뀌면 됨 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 <div class="ui left aligned segment">
@@ -122,7 +99,7 @@
 										</div>
 										<div class="column">
 											<div class="ui disabled input">
-			  									<input type="text" id="mem_id" name="mem_id">
+			  									<input type="text" id="mem_id" name="mem_id" value="<%=mem_id%>">
 											</div>
 										</div>
 									</div>
@@ -152,12 +129,9 @@
 		</div>
 	</div>
 	<script type="text/javascript">
-	$(document).ready(function() {
-		$("#f_form").form('set value','mem_id','<%=mem_id %>');
-	});
 	$("#btn_drop").click(function() {
 		var pmem_pw = $("#f_form").form('get value','pmem_pw');
-		if(pmem_pw == "<%=mem_pw %>") {
+		if(pmem_pw == mem_pw) {
 			alert("탈퇴 요청이 완료되었습니다.");
 			$("#f_form").attr("method","post");
 			$("#f_form").attr("action","../../member/empty/delete.test");
@@ -171,6 +145,6 @@
 </script>
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ header @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 </div>
-<%@ include file="../../include/bottom.jsp" %>
+<%@ include file="../../include/bottom.jsp"%>
 </body>
 </html>

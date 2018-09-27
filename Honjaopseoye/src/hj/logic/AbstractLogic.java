@@ -8,6 +8,7 @@ import java.util.Map;
 import org.apache.log4j.Logger;
 
 import hj.dao.BoardDao;
+import hj.dao.FriendDao;
 import hj.dao.GubunDao;
 import hj.dao.MemberDao;
 import hj.dao.MessageDao;
@@ -23,6 +24,7 @@ public abstract class AbstractLogic {
 	ReplyDao rdao = new ReplyDao();
 	GubunDao gdao = new GubunDao();
 	MemberDao mdao = new MemberDao();
+	FriendDao fdao = new FriendDao();
 	List<Map<String, Object>> list = null;
 	Map<String, String> wMap = null;
 	Map<String, Object> rMap = new HashMap<String,Object>();
@@ -175,12 +177,47 @@ public abstract class AbstractLogic {
 		list = mdao.select(pMap);
 		rMap.put("list", list);
 		}
+		else if ("login".equals(Daoname)) {
+		logger.info("AbLogic : login 메소드 실행 성공");
+		String result = mdao.login(pMap);
+		rMap.put("String", result);
+		}
 		else if("delete".equals(Daoname)) {
 			int result= mdao.delete(pMap);
 			rMap.put("int", result);
 		}
 		else if("update".equals(Daoname)) {
 			int result = mdao.update(pMap);
+			rMap.put("int", result);
+		}
+		else {
+			logger.info("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ DAO클래스 호출 실패 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+			rMap = null;
+		}
+		return rMap;
+	}
+	private Map<String, Object> friendLogic(Map<String, Object> pMap) throws IOException {
+		Logger logger = Logger.getLogger(this.getClass());
+		if("insert".equals(Daoname)) {
+			result = fdao.insert(pMap);
+			rMap.put("int", result);
+		}
+		else if("fri_select".equals(Daoname)) {
+			logger.info("친구검색호출 성공");
+			list = fdao.fri_select(pMap);
+			rMap.put("list", list);
+		}
+		else if ("select".equals(Daoname)) {
+			logger.info("AbLogic : select 메소드 실행 성공");
+			list = fdao.select(pMap);
+			rMap.put("list", list);
+		}
+		else if("delete".equals(Daoname)) {
+			int result= fdao.delete(pMap);
+			rMap.put("int", result);
+		}
+		else if("update".equals(Daoname)) {
+			int result = fdao.update(pMap);
 			rMap.put("int", result);
 		}
 		else {
@@ -211,6 +248,9 @@ public abstract class AbstractLogic {
 			}
 			else if("member".equals(wMap.get("Ctrname"))) {
 				rMap = memberLogic(pMap);
+			}
+			else if("friend".equals(wMap.get("Ctrname"))) {
+				rMap = friendLogic(pMap);
 			}
 			else {
 				logger.info("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 해당컨트롤러에 대한 다오가 존재하지 않습니다. 추가바랍니다 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");

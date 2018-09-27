@@ -78,5 +78,17 @@ public class MemberDao implements DaoForm{
 		sqls.close();
 		return memberList;
 	}
+	public String login(Map<String, Object> pMap) throws IOException {
+		String result ="";
+		logger.info(pMap);
+		logger.info("mdao : login 메소드 호출 성공");
+		List<Map<String, Object>> memberList = null;
+		sqls = dbmgr.connection();
+		result = sqls.selectOne("membermap.login", pMap);
+		logger.info(result);
+		sqls.close();
+		
+		return result;
+	}
 
 }

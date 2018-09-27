@@ -2,37 +2,6 @@
     pageEncoding="utf-8"%>
 <%@page import="java.util.Map"%>
 <%@page import="java.util.List"%>
-<%List<Map<String,Object>> list = (List<Map<String,Object>>)session.getAttribute("memList"); 
-	String mem_id = null;
-	String mem_name = null;
-	String mem_addr = null;
-	String mem_email = null;
-	String mem_hobby = null;
-	String mem_job = null;
-	String mem_tel = null;
-	String mem_birth = null;
-	String mem_gender = null;
-	String emails[];
-	String email = null;
-	String domain = null;
-	
-if(list!=null){
-	mem_id = (String)list.get(0).get("MEM_ID"); 
-	mem_name = (String)list.get(0).get("MEM_NAME");
-	mem_addr = (String)list.get(0).get("MEM_ADDR"); 
-	mem_email = (String)list.get(0).get("MEM_EMAIL"); 
-	mem_hobby = (String)list.get(0).get("MEM_HOBBY"); 
-	mem_job = (String)list.get(0).get("MEM_JOB"); 
-	mem_tel = (String)list.get(0).get("MEM_TEL");
-	mem_birth = (String)list.get(0).get("MEM_BIRTH");
-	mem_gender = (String)list.get(0).get("MEM_GENDER");
-	
-	emails = mem_email.split("@");
-	email = emails[0];
-	domain = "@"+emails[1];
-}
-
-%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -48,11 +17,12 @@ if(list!=null){
  <%@ include file="../../include/include/subtop.jsp"%>
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ header @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 <script type="text/javascript">
+
 $(document).ready(function(){
-	$("#jobs").val('<%=mem_job%>')
-	$("#hobbys").val('<%=mem_hobby%>')
-	$("#mem_gender").val('<%=mem_gender%>')
-	$("#domain").val('<%=domain%>')
+	$("#jobs").val(mem_job)
+	$("#hobbys").val(mem_hobby)
+	$("#mem_gender").val(mem_gender)
+	$("#domain").val(domain)
 })
 </script>
 <div class="ui header" style="margin-left: 150px;margin-right: 150px; margin-top: 100px;margin-bottom: 100px">
@@ -93,12 +63,12 @@ $(document).ready(function(){
 						</div>
 						<div class="right aligned column">
 							<div class="ui segment button" style="width:100%" onclick="location.href='./flist.jsp'">
-								<a href="#"> 친구 관리 </a>
+								<a href="#"> 친구 삭제 </a>
 							</div>
 						</div>
 						<div class="right aligned column">
 							<div class="ui segment button" style="width:100%" onclick="location.href='./fdelete.jsp'">
-								<a href="#"> 친구 삭제 </a>
+								<a href="#"> 친구 찾기 </a>
 							</div>
 						</div>
 						<div class="right aligned column">
@@ -142,7 +112,7 @@ $(document).ready(function(){
 											<div class="ui divider"></div>
 											<div class="ui labeled input">
 												<a class="ui label"><h3>I D</h3> </a> 
-												<input type="text" readonly="readonly" id="mem_id" name="mem_id" value="<%=mem_id%>">
+												<input type="text" readonly="readonly" id="mem_id" name="mem_id" value="<%=mem_id %>">
 											</div>
 											
 									<!-- @@@@@@@@@@@@@@@@@@@@@@@@@ 이름 @@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
@@ -223,7 +193,6 @@ $(document).ready(function(){
 									
 											<div class="ui divider"></div>
 												<select class="ui dropdown" id="mem_gender" name="mem_gender">
-												  <option value="0"><%=mem_gender%></option>
 												  <option value="1300">남</option>
 												  <option value="1301">녀</option>
 												</select>

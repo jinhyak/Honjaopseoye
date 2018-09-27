@@ -46,12 +46,12 @@
 						</div>
 						<div class="right aligned column">
 							<div class="ui segment button" style="width:100%" onclick="location.href='./flist.jsp'">
-								<a href="#"> 친구 관리 </a>
+								<a href="#"> 친구 찾기 </a>
 							</div>
 						</div>
 						<div class="right aligned column">
 							<div class="ui segment button" style="width:100%" onclick="location.href='./fdelete.jsp'">
-								<a href="#"> 친구 삭제 </a>
+								<a href="#"> 친구 관리 </a>
 							</div>
 						</div>
 						<div class="right aligned column">

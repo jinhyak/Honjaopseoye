@@ -8,6 +8,7 @@ import org.apache.log4j.Logger;
 
 import hj.common.ControllerForm;
 import hj.controller.BoardController;
+import hj.controller.FriendController;
 import hj.controller.GubunController;
 import hj.controller.LogicController;
 import hj.controller.MemberController;
@@ -63,8 +64,8 @@ public class Mapping {
 			else if("member".equals(Ctrname)) {
 				ctr = new MemberController();
 			}
-			else if("".equals(Ctrname)) {
-				
+			else if("friend".equals(Ctrname)) {
+				ctr = new FriendController();
 			}
 			else if("".equals(Ctrname)) {
 				

@@ -7,6 +7,6 @@ import java.util.Map;
 
 public interface ControllerForm {
 	
-	public Model excute(HttpServletRequest req,HttpServletResponse res, Map<String, String> map) throws Exception;
+	public Model excute(HttpServletRequest req,HttpServletResponse res, Map<String, String> wMap) throws Exception;
 	
 }

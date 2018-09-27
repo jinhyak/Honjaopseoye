@@ -14,7 +14,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		VALUES (#{mem_id},#{mem_tel},#{mem_name},#{mem_addr},#{mem_email},#{mem_pw},#{mem_birth},#{mem_gender},#{mem_hobby},#{mem_job})
 	</insert>
 	<select id="select" parameterType="map" resultType="map">
-		select * from members where mem_id=#{mem_id} and mem_pw=#{mem_pw}
+		 select * from members,grade where mem_id = grade_id and mem_id = #{mem_id}
 	</select>
 	<delete id="delete" parameterType="java.util.Map">
 		DELETE FROM members
@@ -29,4 +29,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 					mem_email=#{mem_email,jdbcType=VARCHAR}, mem_gender=#{mem_gender,jdbcType=VARCHAR}, mem_birth=#{mem_birth,jdbcType=VARCHAR}, mem_hobby=#{mem_hobby,jdbcType=VARCHAR}, mem_job=#{mem_job,jdbcType=VARCHAR}
 	     WHERE mem_id=#{mem_id,jdbcType=VARCHAR}
 	</update>
+	<select id="login" resultType="String" parameterType="map">
+		select nvl2(
+	       (select '1' from dual where exists(select mem_name from members where mem_id=#{mem_id}))
+	       ,(select nvl((select '1' from members where mem_id=#{mem_id} and mem_pw=#{mem_pw}),'-1') from dual)
+	       ,'0'
+	       )  as MEM_NAME
+	     from dual 
+	</select>
 </mapper>

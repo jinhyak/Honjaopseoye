@@ -35,7 +35,29 @@
 			$("#mem_pw").focus();
 			return false;
 		}else{
-			$("#f_login").submit();
+			var param = $("#f_login").serialize();
+			$.ajax({
+				 method:"post"
+				,url:"../../member/empty/login.test"
+				,data:param
+				,success:function(data){
+					if(data=='0'){
+						alert("존재하지 않는 ID입니다")
+						$("#mem_id").focus();
+					}
+					else if(data=='-1'){
+						alert("비밀번호가 틀렸습니다")
+						$("#mem_pw").focus();
+					}
+					else{
+						alert("로그인에 성공하셨습니다.")
+						location.href="../../main/main.jsp"
+					}
+				}
+				,error:function(data){
+					alert("로그인 실패")
+				}
+			})
 			return true;
 		}
 		
@@ -54,7 +76,7 @@
 		</a>
 	</div>
 	<div style="height: 50px;"></div>
-	<form id="f_login" name="f_login" action="../../member/empty/select.test" method="post">
+	<form id="f_login">
 		<div style="text-align: center; padding-bottom: 10px;">
 			<div class="ui container">
 				<div class="ui big icon input">
@@ -65,7 +87,7 @@
 		<div style="text-align: center; padding-bottom: 10px;">
 			<div class="ui container">
 				<div class="ui big icon input">
-					<input type="text" id="mem_pw" name="mem_pw" placeholder="비밀번호" style="width: 400px; height: 50px;">
+					<input type="password" id="mem_pw" name="mem_pw" placeholder="비밀번호" style="width: 400px; height: 50px;">
 				</div>
 			</div>
 		</div>	
