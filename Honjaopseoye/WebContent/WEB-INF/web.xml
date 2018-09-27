@@ -7,7 +7,7 @@
   </context-param>
   <servlet>
     <servlet-name>main</servlet-name>
-    <servlet-class>servlet.DispatcherServlet</servlet-class>
+    <servlet-class>hj.servlet.DispatcherServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>main</servlet-name>

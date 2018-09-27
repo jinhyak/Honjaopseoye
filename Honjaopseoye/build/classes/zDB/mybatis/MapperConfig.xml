@@ -5,7 +5,7 @@
 		<environment id="development">
 			<transactionManager type="JDBC" />
 			<dataSource type="UNPOOLED">
-				<property name="driver" value="oracle.jdbc.OracleDriver" />
+				<property name="driver" value="oracle.jdbc.OracleDriver" /> 
 				<property name="url" value="jdbc:oracle:thin:@192.168.0.26:1521:orcl11" />
 				<property name="username" value="test" />
 				<property name="password" value="123" />

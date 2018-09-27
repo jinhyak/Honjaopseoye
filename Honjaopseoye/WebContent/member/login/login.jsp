@@ -34,7 +34,15 @@
 			alert("비밀번호를 입력해주세요.");
 			$("#hj_pw").focus();
 			return false;
-		}else{
+		}else if($("#hj_id").val() != s_id){
+			alert("아이디가 일치하지 않습니다.");
+			return;
+		}else if($("#hj_pw").val()!= s_pw){
+			alert("비밀번호가 일치하지 않습니다.");
+			return;
+		}
+		
+		else{
 			$("#f_login").submit();
 			return true;
 		}
@@ -83,7 +91,7 @@
 			<a href="javascript:alert('비번찾기')">비번찾기</a>
 		</div>
 	</div>
-	<div class="ui container" style="text-align: center;">
+	<div class="ui container" style="text-align: center; margin-bottom: 50px;">
 		<div class="column">
 			<img src="../../image/naver_Id.PNG" width="222px" style="padding-bottom: 5px;">
 		</div>
