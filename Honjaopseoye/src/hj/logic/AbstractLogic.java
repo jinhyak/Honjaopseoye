@@ -171,10 +171,15 @@ public abstract class AbstractLogic {
          rMap.put("int", result);
       } 
       else if ("select".equals(Daoname)) {
-      logger.info("AbLogic : select 메소드 실행 성공");
-      list = mdao.select(pMap);
-      rMap.put("list", list);
+        logger.info("AbLogic : select 메소드 실행 성공");
+        list = mdao.select(pMap);
+        rMap.put("list", list);
       }
+      else if ("login".equals(Daoname)) {
+  		logger.info("AbLogic : login 메소드 실행 성공");
+  		String result = mdao.login(pMap);
+  		rMap.put("String", result);
+  	  }
       else if("delete".equals(Daoname)) {
          int result= mdao.delete(pMap);
          rMap.put("int", result);

@@ -89,5 +89,10 @@ public class MemberDao implements DaoForm{
       logger.info("e_idSearch : "+e_idSearch);
       return e_idSearch;
    }
+	public String login(Map<String, Object> pMap) {
+		logger.info("Dao : login 호출 성공 : "+pMap);
+		List<Map<String, Object>>  
+		return null;
+	}
 
 }
