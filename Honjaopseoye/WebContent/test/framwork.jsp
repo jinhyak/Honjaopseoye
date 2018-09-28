@@ -3,6 +3,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<%@include file="../include/commonUI.jsp" %>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Insert title here</title>
 </head>
@@ -76,7 +77,7 @@
 		<div class="column"style="width:80%;">
 			<div class="ui field">
 				<div class="ui segment">
-					<div class="ui center aligned one column grid">
+					<div class="ui one column grid">
 						<div class="center aligned column">
 							<div class="ui segment">
 								<div class="ui large header">
@@ -84,7 +85,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="center aligned column">
+						<div class="column">
 							<div class="ui segment" style="width:100%;height:1000px">
 							
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 여기만 바뀌면 됨 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
@@ -94,8 +95,52 @@
 								
 								
 								
-								<a href="#"> 회원 정보 form </a>
-								
+								<div class="ui massive aligned divided list">
+  <div class="item">
+    <div class="right floated content">
+      <div class="ui button">Add</div>
+    </div>
+    <img class="ui avatar image" src="/images/avatar2/small/lena.png">
+    <div class="content">
+      Lena
+    </div>
+  </div>
+  <div class="item">
+    <div class="right floated content">
+      <div class="ui button">Add</div>
+    </div>
+    <img class="ui avatar image" src="/images/avatar2/small/lindsay.png">
+    <div class="content">
+      Lindsay
+    </div>
+  </div>
+  <div class="item">
+    <div class="right floated content">
+      <div class="ui button">Add</div>
+    </div>
+    <img class="ui avatar image" src="/images/avatar2/small/mark.png">
+    <div class="content">
+      Mark
+    </div>
+  </div>
+  <div class="item">
+    <div class="right floated content">
+      <div class="ui button">Add</div>
+    </div>
+    <img class="ui avatar image" src="/images/avatar2/small/molly.png">
+    <div class="content">
+      Molly
+    </div>
+  </div>
+</div>
+								<script type="text/javascript">
+								$('.button').click(function(){
+									var button=$(this)
+									var item = button.parent().parent()
+									var id = item.children().eq(2).text()
+									alert(id)
+								})
+								</script>
 								
 								
 								

@@ -60,7 +60,6 @@
 			})
 			return true;
 		}
-		
 	}
 </script>
 
@@ -118,9 +117,7 @@
 	<a href="http://developers.kakao.com/logout"></a>
 	<script type='text/javascript'>
 	//<![CDATA[
-	
 		Kakao.init('2e932cab0576b49285b3e1a591eb63f1');
-	
 		Kakao.Auth.createLoginButton({
 			container : '#kakao-login-btn',
 			success : function(authObj) {

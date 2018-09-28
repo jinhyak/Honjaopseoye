@@ -89,7 +89,7 @@
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 여기만 바뀌면 됨 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 								<div class="ui stackable two column grid" style="margin-top:50px;margin-bottom:50px">
 									<div class="left aligned column">
-										<h2 class="ui dividing header" style="margin-left:50px;">친구 목록</h2>
+										<h2 class="ui dividing header" style="margin-left:50px;">친구 검색 목록</h2>
 									</div>
 									<div class="right aligned column">
 										<div class="ui left icon label input" style="margin-right:40px;border:solid">
