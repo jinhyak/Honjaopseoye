@@ -17,7 +17,6 @@ public class MemberDao implements DaoForm{
 	
 
 	public int id_sel(Map<String, Object> pMap) throws IOException {
-		List<Map<String, Object>> list = null;
 		sqls = dbmgr.connection();
 		int result=0;
 		result = (int)sqls.selectOne("id_sel", pMap);
@@ -26,7 +25,6 @@ public class MemberDao implements DaoForm{
 		return result;
 	}
 	public int tel_sel(Map<String, Object> pMap) throws IOException {
-		List<Map<String, Object>> list = null;
 		int result = 0;
 		sqls = dbmgr.connection();
 		result = (int)sqls.selectOne("tel_sel", pMap);

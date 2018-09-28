@@ -3,7 +3,7 @@ package hj.common;
 public class Model {
 	
 	private boolean isRedirect = true;
-	private String path = "../../error.jsp"; //error낫을때 가는 페이지
+	private String path = "../../test/error.jsp"; //error낫을때 가는 페이지
 	
 	public boolean isRedirect() {
 		return isRedirect;

@@ -98,7 +98,6 @@
 										  <button class="ui label button" onclick="search()">검색</button>
 										</div>
 									</div>
-
 									<table class="ui celled right aligned table" id="f_table" style="margin-left:50px;margin-right:50px;border:solid">
 										<thead>
 											<tr>

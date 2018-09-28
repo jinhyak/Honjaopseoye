@@ -25,7 +25,11 @@ public class Logic extends AbstractLogic{
 		else if("test".equals(wMap.get("Ctrname"))) {
 			rMap = testLogic(pMap);
 		}
-//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ logic을 return받으면 값이 object가 들어오기 때문에 instanceof로 구분해줌 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+		else if("message".equals(wMap.get("Ctrname"))) {
+			
+			
+			
+		}
 		
 		
 		
@@ -52,5 +56,33 @@ public class Logic extends AbstractLogic{
 		return 0;
 	}
 	
+	
+	
+	public String msg(Map<String, Object> pMap) {
+		String result = "";
+			if(pMap.get("msg_from")==null||pMap.get("msg_from").equals("") ||pMap.get("msg_to")==null||pMap.get("msg_to").equals("")||pMap.get("msg_no")==null||pMap.get("msg_no").equals("")) {
+				result="";
+			}
+			else if (pMap.get("msg_no").equals("ten")) result= getTen(pMap);
+			else {
+				result=getID(pMap);
+			}
+		
+		
+		return result;
+	}
+
+	private String getID(Map<String, Object> pMap) {
+		StringBuffer result = new StringBuffer("");
+		result.append("{\"[result\":[");
+		List<Map<String, Object>> list = messagedao.msgListById(pMap);
+		
+		return null;
+	}
+
+	private String getTen(Map<String, Object> pMap) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }

@@ -92,52 +92,59 @@
 								
 								
 								
-								
-								
-								
-								<div class="ui massive aligned divided list">
-  <div class="item">
-    <div class="right floated content">
-      <div class="ui button">Add</div>
+<div class="ui three doubling stackable cards">
+  <div class="ui card">
+    <div class="image" ><img src="../image/male.jpg" style="width:100%;height:100%">
+      <div class="ui placeholder">
+        <div class="square image"></div>
+      </div>
     </div>
-    <img class="ui avatar image" src="/images/avatar2/small/lena.png">
     <div class="content">
-      Lena
+      <div class="ui placeholder">
+        <div class="header">
+          <div class="very short line"><div class="ui blue header ID">ID : ssssssss</div></div>
+          <div class="medium line">
+          <div>이름  : </div>
+          <div class="meta">Email :   </div>
+          </div>
+        </div>
+        <div class="paragraph">
+          <div class="short line"><div class="meta">생년월일 : </div></div>
+        </div>
+      </div>
+    </div>
+    <div class="extra content">
+      <div class="ui primary button">Add</div>
     </div>
   </div>
-  <div class="item">
-    <div class="right floated content">
-      <div class="ui button">Add</div>
-    </div>
-    <img class="ui avatar image" src="/images/avatar2/small/lindsay.png">
+  <div class="ui card">
     <div class="content">
-      Lindsay
+      <div class="ui placeholder">
+        <div class="square image"></div>
+      </div>
     </div>
   </div>
-  <div class="item">
-    <div class="right floated content">
-      <div class="ui button">Add</div>
-    </div>
-    <img class="ui avatar image" src="/images/avatar2/small/mark.png">
+  <div class="ui card">
     <div class="content">
-      Mark
+      <div class="ui placeholder">
+        <div class="square image"></div>
+      </div>
     </div>
   </div>
-  <div class="item">
-    <div class="right floated content">
-      <div class="ui button">Add</div>
-    </div>
-    <img class="ui avatar image" src="/images/avatar2/small/molly.png">
+  <div class="ui card">
     <div class="content">
-      Molly
+      <div class="ui placeholder">
+        <div class="square image"></div>
+      </div>
     </div>
   </div>
 </div>
 								<script type="text/javascript">
 								$('.button').click(function(){
 									var button=$(this)
-									var item = button.parent().parent()
-									var id = item.children().eq(2).text()
+									var card = button.parent().parent()
+									var content = card.children().eq(1)
+									var id = content.children().children().children().children().eq(0).text()
 									alert(id)
 								})
 								</script>

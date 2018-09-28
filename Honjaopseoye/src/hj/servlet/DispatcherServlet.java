@@ -23,13 +23,12 @@ public class DispatcherServlet extends HttpServlet{
 		Map<String, String> wMap = new HashMap<String, String>();//얘는 값 옮겨주는애
 		ControllerForm ctr = null;
 		Map<String, Object> pMap = new HashMap<String,Object>();
+		req.setCharacterEncoding("utf-8");
 		HashMapBinder hmb = new HashMapBinder(req);
 		hmb.bind(pMap);
-		System.out.println();
 		Model view = null;
 		Mapping Mapping = new Mapping();
 //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 한글설정 euc-kr @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-		req.setCharacterEncoding("utf-8");
 //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 컨트롤러를 정해줌 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 		ctr = Mapping.mapping(req,wMap);
 		if(ctr==null) {
@@ -44,14 +43,12 @@ public class DispatcherServlet extends HttpServlet{
 			} catch (Exception e) {
 				view = new Model();
 				logger.info("excute오류중");
-				view.setPath("../../main/main.jsp");
 				e.printStackTrace();
 			}
 		}
 		if(view==null) {
 			logger.info("view가 널입니다");
 			view = new Model();
-			view.setPath("../../test/error.jsp");
 			//error page 로 가게해줌
 		}
 //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 보낼 방식과 보낼 페이지를 결정해줌 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@

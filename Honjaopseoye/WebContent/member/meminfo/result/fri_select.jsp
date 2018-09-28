@@ -9,14 +9,14 @@ list = (List<Map<String,Object>>)request.getAttribute("result");
 if(list!=null){
 	for(int i=0;i<list.size();i++){
 %>
-  <div class="ui stackable item" >
+  <div class="ui item" >
     <div class="right floated content">
       <div class="ui button btnclick">삭제</div>
     </div>
     <div class="right floated content">
       <div class="ui button btnmessage">메시지 보내기</div>
     </div>
-    <img class="ui avatar image" src="../../image/male.jpg" style="width:50px;height:50px" >
+    <img class="ui avatar image" src="../../image/male.jpg" style="width:50px;height:50px">
     <div class="middle aligned content" style="width:70px;">
     	<div class="ui teal header"><%=list.get(i).get("FRI_ID")%></div>
 	    <div class="discription"><%=list.get(i).get("FRI_NAME")%></div>
@@ -64,8 +64,6 @@ if(list!=null){
 		var id = item.children().eq(3)
 		var to_id = id.children().eq(0).text()
 		var from_id = mem_id;
-		
-		var messagewin = cmm_window_popup("../message/message.jsp", "1000", "800", "채팅창");
-		
+		var messagewin = cmm_window_popup("../message/message.jsp?mem_id="+from_id+"&fri_id="+to_id, "1000", "800", "채팅창");
 	})
 	</script>

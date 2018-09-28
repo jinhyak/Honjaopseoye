@@ -67,7 +67,8 @@ public class Mapping {
 			else if("friend".equals(Ctrname)) {
 				ctr = new FriendController();
 			}
-			else if("".equals(Ctrname)) {
+			else if("message".equals(Ctrname)) {
+				ctr = new MessageController();
 				
 			}
 			else if("".equals(Ctrname)) {

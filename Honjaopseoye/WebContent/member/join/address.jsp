@@ -21,7 +21,7 @@
 </head>
 <body>
 	<div class="ui container" style="margin-top:50px">
-		<div class="html ui top attached segment">
+		<div class="ui top attached segment">
 			<table class="ui celled table" style="margin-top:50px" id="addr_tb">
 			  <thead>
 			    <tr id="dd">

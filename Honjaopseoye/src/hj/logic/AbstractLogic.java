@@ -14,7 +14,6 @@ import hj.dao.MemberDao;
 import hj.dao.MessageDao;
 import hj.dao.ReplyDao;
 import hj.dao.TestDao;
-import hj.dao.GubunDao;
 
 public abstract class AbstractLogic {
 	Logger logger = Logger.getLogger(AbstractLogic.class);
@@ -226,7 +225,6 @@ public abstract class AbstractLogic {
 		}
 		return rMap;
 	}
-
 //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ empty호출시 dao로 바로 분기 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@//
 		public Map<String, Object> empty(Map<String, Object> pMap) throws Exception {
 			logger.info("empty메소드 호출성공");

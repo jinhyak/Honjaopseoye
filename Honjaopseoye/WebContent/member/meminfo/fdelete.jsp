@@ -82,9 +82,7 @@
 						</div>
 						<div class="column">
 							<div class="ui segment" style="width:100%;height:100%">
-							
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 여기만 바뀌면 됨 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-								
 								<div class="ui stackable one column grid" style="margin-top:20px;margin-bottom:50px">
 									<div class="left aligned column">
 										<h2 class="ui dividing header" style="margin-left:50px;">친구 목록</h2>
@@ -92,8 +90,8 @@
 									<div class="ui middle selection list" id="fri_search" style="width:100%;padding-left: 80px;padding-right: 80px;">
 									</div>
 									<script type="text/javascript">
-												alert(mem_id);
-												var param="mem_id="+mem_id;
+											alert(mem_id);
+											var param="mem_id="+mem_id;
 											$.ajax({
 												 method:"post"
 												,data:param
@@ -106,7 +104,6 @@
 												}
 											})
 									</script>
-								
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 여기만 바뀌면 됨 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 								</div>
 							</div>

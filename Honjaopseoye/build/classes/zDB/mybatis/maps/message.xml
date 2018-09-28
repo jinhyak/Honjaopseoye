@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="messagemap">
+	<insert id="insert" parameterType="map">
+		insert into msg (msg_no,msg_from,msg_to,msg_content,msg_date,msg_read) values (seq_msg_no.nextval,#{msg_from},#{msg_to},#{msg_content},sysdate,'0')
+	</insert>
+	<select id="msgListById" parameterType="map" resultType="map">
+		select msg_from,msg_to,msg_content,msg_read,to_char(msg_no) as MSG_NO,to_char(msg_date,'yyyy/mm/dd am hh12:mm:ss') as MSG_DATE
+		from msg where ((msg_from = #{msg_from} and msg_to = #{msg_to}) or (msg_to = #{msg_to} and msg_from = #{msg_from})) and msg_no > #{msg_no} order by msg_date
+	</select>
+	<select id="msgListByRecent" parameterType="map" resultType="map">
+		select msg_from,msg_to,msg_content,msg_read,to_char(msg_no) as MSG_NO,to_char(msg_date,'yyyy/mm/dd am hh12:mm:ss') as MSG_DATE
+		from msg where ((msg_from = #{msg_from} and msg_to = #{msg_to}) or (msg_to = #{msg_to} and msg_from = #{msg_from})) and msg_no > 
+		(select max(msg_no)-#{msg_no} from msg) order by msg_date
+	</select>
+</mapper>
