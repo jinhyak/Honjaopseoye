@@ -130,7 +130,7 @@
 	</div>
 	<script type="text/javascript">
 	$("#btn_drop").click(function() {
-		var pmem_pw = $("#f_form").form('get value','pmem_pw');
+		var pmem_pw = $("#pmem_pw").val();
 		if(pmem_pw == mem_pw) {
 			alert("탈퇴 요청이 완료되었습니다.");
 			$("#f_form").attr("method","post");
@@ -139,7 +139,7 @@
 		}
 		else {
 			alert("비밀번호가 일치하지 않습니다.");
-			$("#f_form").form('set value','pmem_pw', '');
+			$("#pmem_pw").val('');
 		}
 	});// /main/member/empty/delet.test
 </script>
