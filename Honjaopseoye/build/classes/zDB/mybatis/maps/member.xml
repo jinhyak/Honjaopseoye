@@ -20,6 +20,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		DELETE FROM members
 		WHERE mem_id = #{mem_id}
 	</delete>
+<<<<<<< HEAD
 	<insert id="grade" parameterType="map">
 		INSERT INTO grade (grade_id, grade_level, grade_point)
 		VALUES (#{mem_id},'브론즈',0)
@@ -37,4 +38,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	       )  as MEM_NAME
 	     from dual 
 	</select>
+=======
+	 <select id="idSearch" resultType="map" parameterType="map">
+      select mem_id, mem_name from members
+         <if test="ins_name!=null"> 
+            where mem_name = #{ins_name}<!-- map의 키값(내가 화면에서 넘긴 name 값) -->
+         </if>
+         <if test="ins_ph!=null">
+            and mem_tel = #{ins_ph}
+         </if>
+   </select>
+   <select id="e_idSearch" resultType="map" parameterType="map">
+      select mem_id, mem_name from members
+         <if test='e_name!=null'>
+           where mem_name = #{e_name}
+         </if>
+         <if test='e_mail!=null'>
+            and mem_email = #{e_mail}
+         </if>
+   </select>
+>>>>>>> refs/remotes/origin/희진
 </mapper>

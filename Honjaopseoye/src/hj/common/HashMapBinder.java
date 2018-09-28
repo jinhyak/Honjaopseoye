@@ -5,7 +5,10 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.log4j.Logger;
+
 public class HashMapBinder {
+	Logger logger = Logger.getLogger(HashMapBinder.class);
 	HttpServletRequest req = null;
 	public HashMapBinder(HttpServletRequest req){
 		this.req = req;
@@ -15,8 +18,8 @@ public class HashMapBinder {
 		Enumeration<String> en =req.getParameterNames();
 		while(en.hasMoreElements()) {
 			String key = en.nextElement();
+			logger.info(req.getParameter(key));
 			pMap.put(key, req.getParameter(key));
-			System.out.println(pMap);
 		}
 	}
 }
