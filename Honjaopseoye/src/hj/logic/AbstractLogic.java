@@ -50,7 +50,7 @@ public abstract class AbstractLogic {
 			rMap.put("int", result);
 		}
 		else {
-			logger.info("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ DAOÅ¬·¡½º È£Ãâ ½ÇÆĞ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+			logger.info("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ DAOÅ¬ï¿½ï¿½ï¿½ï¿½ È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 			return null;
 		}
 		return rMap;
@@ -74,7 +74,7 @@ public abstract class AbstractLogic {
 			rMap.put("int", result);
 		}
 		else {
-			logger.info("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ DAOÅ¬·¡½º È£Ãâ ½ÇÆĞ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+			logger.info("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ DAOÅ¬ï¿½ï¿½ï¿½ï¿½ È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 			return null;
 		}
 		return rMap;
@@ -98,7 +98,7 @@ public abstract class AbstractLogic {
 			rMap.put("int", result);
 		}
 		else {
-			logger.info("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ DAOÅ¬·¡½º È£Ãâ ½ÇÆĞ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+			logger.info("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ DAOÅ¬ï¿½ï¿½ï¿½ï¿½ È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 			return null;
 		}
 		return rMap;
@@ -122,7 +122,7 @@ public abstract class AbstractLogic {
 			rMap.put("result", result);
 		}
 		else {
-			logger.info("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ DAOÅ¬·¡½º È£Ãâ ½ÇÆĞ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+			logger.info("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ DAOÅ¬ï¿½ï¿½ï¿½ï¿½ È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 			rMap = null;
 		}
 		return rMap;
@@ -138,7 +138,7 @@ public abstract class AbstractLogic {
 			rMap.put("list", list);
 		}
 		else if("siselect".equals(Daoname)) {
-			logger.info("sislectÈ£Ãâ ¼º°ø");
+			logger.info("sislectÈ£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 			list = gdao.siselect(pMap);
 			rMap.put("list", list);
 		}
@@ -151,7 +151,7 @@ public abstract class AbstractLogic {
 			rMap.put("list", list);
 		}
 		else {
-			logger.info("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ DAOÅ¬·¡½º È£Ãâ ½ÇÆĞ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+			logger.info("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ DAOÅ¬ï¿½ï¿½ï¿½ï¿½ È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 			rMap = null;
 		}
 		return rMap;
@@ -163,25 +163,63 @@ public abstract class AbstractLogic {
 			rMap.put("int", result);
 		}
 		else if("tel_sel".equals(Daoname)) {
-			logger.info("IDÈ£Ãâ ¼º°ø");
+			logger.info("IDÈ£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 			result = mdao.tel_sel(pMap);
 			rMap.put("int", result);
 		}
 		else if("id_sel".equals(Daoname)) {
-			logger.info("IDÈ£Ãâ ¼º°ø");
+			logger.info("id_sel í˜¸ì¶œ ì„±ê³µ");
 			result = mdao.id_sel(pMap);
 			rMap.put("int", result);
 		} 
 		else if ("select".equals(Daoname)) {
-		logger.info("AbLogic : select ¸Ş¼Òµå ½ÇÇà ¼º°ø");
+		logger.info("AbLogic : select í˜¸ì¶œì„±ê³µ");
 		list = mdao.select(pMap);
 		rMap.put("list", list);
 		}
 		else if ("login".equals(Daoname)) {
-		logger.info("AbLogic : login ¸Ş¼Òµå ½ÇÇà ¼º°ø");
+		logger.info("AbLogic : login í˜¸ì¶œì„±ê³µ");
 		String result = mdao.login(pMap);
 		rMap.put("String", result);
 		}
+		else if("check".equals(Daoname)) {
+			logger.info("AbLogic : check í˜¸ì¶œ ì„±ê³µ");
+			String result = mdao.check(pMap);
+			rMap.put("check", result);
+		}else if("check2".equals(Daoname)) {
+			logger.info("AbLogic : check2 í˜¸ì¶œ ì„±ê³µ");
+			String result = mdao.check2(pMap);
+			rMap.put("check2", result);
+		}
+		else if("idSearch".equals(Daoname)) {
+	         list = mdao.idSearch(pMap);
+	         rMap.put("idSearch", list);
+	    }
+	    else if("e_idSearch".equals(Daoname)) {
+	    	logger.info("e_idSearch í˜¸ì¶œ ì„±ê³µ");
+	         list = mdao.e_idSearch(pMap);
+	         rMap.put("e_idSearch", list);
+	    }
+	    else if("pwCheck".equals(Daoname)) {
+	    	logger.info("AbLogic : pwCheck í˜¸ì¶œ ì„±ê³µ");
+	    	String result = mdao.pwCheck(pMap);
+	    	rMap.put("pwCheck", result);
+	    }
+	    else if("pwSearch".equals(Daoname)) {
+	    	logger.info("AbLogic : pwSearch í˜¸ì¶œ ì„±ê³µ");
+	    	list = mdao.pwSearch(pMap);
+	    	rMap.put("pwSearch", list);
+	    }
+	    else if("pwCheck2".equals(Daoname)) {
+	    	logger.info("AbLogic : pwCheck2 í˜¸ì¶œ ì„±ê³µ");
+	    	String result = mdao.pwCheck2(pMap);
+	    	rMap.put("pwCheck2", result);
+	    }
+	    else if("e_pwSearch".equals(Daoname)) {
+	    	logger.info("AbLogic : e_pwSearch í˜¸ì¶œ ì„±ê³µ");
+	    	list = mdao.e_pwSearch(pMap);
+	    	rMap.put("e_pwSearch", list);;
+	    }
 		else if("delete".equals(Daoname)) {
 			int result= mdao.delete(pMap);
 			rMap.put("int", result);
@@ -191,7 +229,7 @@ public abstract class AbstractLogic {
 			rMap.put("int", result);
 		}
 		else {
-			logger.info("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ DAOÅ¬·¡½º È£Ãâ ½ÇÆĞ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+			logger.info("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ DAOí´ë˜ìŠ¤ í˜¸ì¶œ ì‹¤íŒ¨ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 			rMap = null;
 		}
 		return rMap;
@@ -203,12 +241,12 @@ public abstract class AbstractLogic {
 			rMap.put("int", result);
 		}
 		else if("fri_select".equals(Daoname)) {
-			logger.info("Ä£±¸°Ë»öÈ£Ãâ ¼º°ø");
+			logger.info("fri_select í˜¸ì¶œ ì„±ê³µ");
 			list = fdao.fri_select(pMap);
 			rMap.put("list", list);
 		}
 		else if ("select".equals(Daoname)) {
-			logger.info("AbLogic : select ¸Ş¼Òµå ½ÇÇà ¼º°ø");
+			logger.info("AbLogic : select í˜¸ì¶œì„±ê³µ");
 			list = fdao.select(pMap);
 			rMap.put("list", list);
 		}
@@ -221,15 +259,15 @@ public abstract class AbstractLogic {
 			rMap.put("int", result);
 		}
 		else {
-			logger.info("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ DAOÅ¬·¡½º È£Ãâ ½ÇÆĞ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+			logger.info("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ DAOÅ¬ï¿½ï¿½ï¿½ï¿½ È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 			rMap = null;
 		}
 		return rMap;
 	}
 
-//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ emptyÈ£Ãâ½Ã dao·Î ¹Ù·Î ºĞ±â @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@//
+//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ emptyÈ£ï¿½ï¿½ï¿½ daoï¿½ï¿½ ï¿½Ù·ï¿½ ï¿½Ğ±ï¿½ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@//
 		public Map<String, Object> empty(Map<String, Object> pMap) throws Exception {
-			logger.info("empty¸Ş¼Òµå È£Ãâ¼º°ø");
+			logger.info("emptyí˜¸ì¶œ ì„±ê³µ");
 			if("board".equals(wMap.get("Ctrname"))) {
 				rMap = boardLogic(pMap);
 			}
@@ -244,16 +282,17 @@ public abstract class AbstractLogic {
 			}
 			else if("gubun".equals(wMap.get("Ctrname"))){
 				rMap = gubunLogic(pMap);
-				logger.info("gubunLogic È£Ãâ¼º°ø");
+				logger.info("gubunLogic í˜¸ì¶œì„±ê³µ");
 			}
 			else if("member".equals(wMap.get("Ctrname"))) {
+				logger.info("ë¡œì§ member í˜¸ì¶œ ì„±ê³µ");
 				rMap = memberLogic(pMap);
 			}
 			else if("friend".equals(wMap.get("Ctrname"))) {
 				rMap = friendLogic(pMap);
 			}
 			else {
-				logger.info("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ÇØ´çÄÁÆ®·Ñ·¯¿¡ ´ëÇÑ ´Ù¿À°¡ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù. Ãß°¡¹Ù¶ø´Ï´Ù @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+				logger.info("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ï¿½Ø´ï¿½ï¿½ï¿½Æ®ï¿½Ñ·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ù¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê½ï¿½ï¿½Ï´ï¿½. ï¿½ß°ï¿½ï¿½Ù¶ï¿½ï¿½Ï´ï¿½ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 			}
 			return rMap;
 		}
