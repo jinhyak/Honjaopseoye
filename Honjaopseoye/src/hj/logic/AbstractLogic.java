@@ -60,17 +60,22 @@ public abstract class AbstractLogic {
 			result = messagedao.insert(pMap);
 			rMap.put("int", result);
 		}
-		else if("select".equals(Daoname)) {
-			list = messagedao.select(pMap);
+		else if("msgListByRecent".equals(Daoname)) {
+			list = messagedao.msgListByRecent(pMap);
 			rMap.put("list", list);
-		}
-		else if("update".equals(Daoname)) {
-			result = messagedao.update(pMap);
-			rMap.put("int", result);
 		}
 		else if("delete".equals(Daoname)) {
 			result = messagedao.delete(pMap);
 			rMap.put("int", result);
+		}
+		else if("allUnReadMsg".equals(Daoname)) {
+			String result = null;
+			result = messagedao.allUnReadMsg(pMap);
+			rMap.put("String", result);
+		}
+		else if("getmsgBox".equals(Daoname)) {
+			list = messagedao.getmsgBox(pMap);
+			rMap.put("list", list);
 		}
 		else {
 			logger.info("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ DAO클래스 호출 실패 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");

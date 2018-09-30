@@ -92,52 +92,11 @@
 								
 								
 								
-<div class="ui three doubling stackable cards">
-  <div class="ui card">
-    <div class="image" ><img src="../image/male.jpg" style="width:100%;height:100%">
-      <div class="ui placeholder">
-        <div class="square image"></div>
-      </div>
-    </div>
-    <div class="content">
-      <div class="ui placeholder">
-        <div class="header">
-          <div class="very short line"><div class="ui blue header ID">ID : ssssssss</div></div>
-          <div class="medium line">
-          <div>이름  : </div>
-          <div class="meta">Email :   </div>
-          </div>
-        </div>
-        <div class="paragraph">
-          <div class="short line"><div class="meta">생년월일 : </div></div>
-        </div>
-      </div>
-    </div>
-    <div class="extra content">
-      <div class="ui primary button">Add</div>
-    </div>
-  </div>
-  <div class="ui card">
-    <div class="content">
-      <div class="ui placeholder">
-        <div class="square image"></div>
-      </div>
-    </div>
-  </div>
-  <div class="ui card">
-    <div class="content">
-      <div class="ui placeholder">
-        <div class="square image"></div>
-      </div>
-    </div>
-  </div>
-  <div class="ui card">
-    <div class="content">
-      <div class="ui placeholder">
-        <div class="square image"></div>
-      </div>
-    </div>
-  </div>
+<div class="ui compact menu">
+  <a class="item">
+    <i class="icon mail"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 메시지
+    </font></font><div class="floating ui red label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">22</font></font></div>
+  </a>
 </div>
 								<script type="text/javascript">
 								$('.button').click(function(){

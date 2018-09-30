@@ -29,16 +29,37 @@ public class MessageController implements ControllerForm{
 //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 선언  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 		if("empty".equals(map.get("Logicname"))) {
 			logger.info("messageController 진입완료");
-			rMap = logic.empty(pMap);
 			if("insert".equals(map.get("Daoname"))) {
+				rMap = logic.empty(pMap);
 				int result = (int)rMap.get("int");
 				view.setPath("../../member/message/result/result.jsp?result="+result);
 				view.setRedirect(true);
 			}
+			else if("msgListByRecent".equals(map.get("Daoname"))) {
+				rMap = logic.empty(pMap);
+				list = (List<Map<String,Object>>)rMap.get("list");
+				req.setAttribute("result", list);
+				view.setPath("../../member/message/result/mlist.jsp");
+				view.setRedirect(false);
+			}
+			else if("allUnReadMsg".equals(map.get("Daoname"))) {
+				rMap = logic.empty(pMap);
+				str = rMap.get("String").toString();
+				view.setPath("../../member/message/result/result.jsp?result="+str);
+				view.setRedirect(true);
+			}
+			else if("getmsgBox".equals(map.get("Daoname"))) {
+				rMap = logic.empty(pMap);
+				list = (List<Map<String,Object>>)rMap.get("list");
+				req.setAttribute("result", list);
+				view.setPath("../../member/message/result/blist.jsp");
+				view.setRedirect(false);
+			}
 			else {
-				view.setPath("../../member/join/result/result.jsp");
+				view.setPath("../test/error.jsp");
 			}
 		}
+
 		return view;
 	}
 

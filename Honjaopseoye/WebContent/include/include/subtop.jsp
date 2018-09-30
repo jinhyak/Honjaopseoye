@@ -17,7 +17,7 @@ String email = null;
 String domain = null;
 String mem_pw = null;
 String lv = null;
-String pt = null;
+int pt = 0;
 	List<Map<String,Object>> member = (List<Map<String,Object>>)session.getAttribute("memList");
 	if(member!=null){
 		mem_id = (String)member.get(0).get("MEM_ID");
@@ -31,7 +31,7 @@ String pt = null;
 		mem_gender = (String)member.get(0).get("MEM_GENDER");
 		mem_pw = (String)member.get(0).get("MEM_PW");
 		lv = (String)member.get(0).get("GRADE_LEVEL");
-		pt = (String)member.get(0).get("GRADE_POINT");
+		pt =  Integer.parseInt(member.get(0).get("GRADE_POINT").toString());
 		emails = mem_email.split("@");
 		email = emails[0];
 		domain = "@"+emails[1];
@@ -39,7 +39,6 @@ String pt = null;
 	else{
 		mem_id = "비회원";
 		lv="없음";
-		pt="0";
 	}
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -59,6 +58,7 @@ var domain = '<%=domain%>'
 var mem_pw = '<%=mem_pw%>'
 var point = '<%=pt%>'
 var level = '<%=lv%>'
+var msg_count=0;
 </script>
 <head>
 <%@include file="./commonUI.jsp" %>
@@ -94,7 +94,11 @@ var level = '<%=lv%>'
       <div class="right item"><script>document.write(level)</script></div>
       <div class="item">point:<script>document.write(point)</script></div>
       <div class="item"><script>document.write(mem_id)</script></div>
-    </div>
+	  <a class="item" href="javascript:messageBox()">
+	    <i class="icon mail"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 메시지
+	    </font></font><div class="ui red label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"><span id="msg_count">0</span></font></font></div>
+	  </a>
+	</div>
   </div>
   <script type="text/javascript">
   	function mlist(){
@@ -105,6 +109,36 @@ var level = '<%=lv%>'
   			alert("로그인 후 이용 가능합니다")
   		}
   	}
+  	function messageBox(){
+  		if(mem_id!='비회원'){
+  			cmm_window_popup("../../member/message/messageBox.jsp?mem_id="+mem_id, 800, 800, "메시지함");
+  		}
+  		else{
+  			alert("로그인 후 이용 가능합니다")
+  		}
+  	}
+  	function msgCount(){
+  		var param = "mem_id="+mem_id
+  		$.ajax({
+  			method:"post",
+  			url:"../../message/empty/allUnReadMsg.test",
+  			data:param,
+  			success:function(data){
+  				$("#msg_count").text(msg_count);
+  			},
+  			error:function(data){
+  				alert("메시지 전달 오류")
+  			}
+  		})
+  	}
+  	$(document).ready(function(){
+  		if(mem_id!='비회원'){
+		msgCount();
+  		}
+  		else{
+  			
+  		}
+  	})
   </script>
 </body>
 </html>
