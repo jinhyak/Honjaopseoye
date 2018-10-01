@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="gubunmap">
+	<select id="doselect" parameterType="java.util.Map" resultType="java.util.Map">
+		select zdo from zipcode group by zdo
+	</select>
+	<select id="siselect" parameterType="java.util.Map" resultType="java.util.Map">
+		select sigu from zipcode where zdo=#{zdo} group by sigu
+	</select>
+	<select id="dongselect" parameterType="java.util.Map" resultType="java.util.Map">
+		select dong from zipcode where sigu = #{sigu} group by dong
+	</select>
+	<select id="detailselect" parameterType="java.util.Map" resultType="java.util.Map">
+		select address,zipcode from zipcode where address like '%'||#{address}||'%' and zdo = #{zdo} and sigu = #{sigu} and dong = #{dong}
+	</select>
+</mapper>

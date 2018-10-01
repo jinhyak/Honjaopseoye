@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="friendmap">
+	<select id="fri_select" parameterType="java.util.Map" resultType="java.util.Map">
+        select mem_id,mem_name, mem_birth, mem_email
+        from 
+        (select members.mem_id,members.mem_name,members.mem_birth,members.mem_email 
+        from members where mem_id!= #{mem_id} and mem_id not in (select fri_id as fri_id from friend where mem_id=#{mem_id})
+        ) 
+        where mem_id like '%'||#{value}||'%'
+        or mem_name like '%'||#{value}||'%'
+	</select>
+	<insert id="fri_add" parameterType="map">
+		insert into friend(fri_id,mem_id,fri_name,fri_email,fri_birth)
+		values(#{fri_id},#{mem_id},#{fri_name},#{fri_email},#{fri_birth})
+	</insert>
+	<select id="select" parameterType="java.util.Map" resultType="java.util.Map">
+		select * from friend where mem_id=#{mem_id}
+	</select>
+	<delete id="fri_del">
+		delete from friend where mem_id=#{mem_id} and fri_id=#{fri_id}
+	</delete>
+	<insert id="friadd" parameterType="map">
+		insert into friend(fri_id,mem_id,fri_name,fri_email,fri_birth)
+		values(#{mem_id},#{fri_id},#{mem_name},#{mem_email},#{mem_birth})
+	</insert>
+</mapper>

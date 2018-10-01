@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="messagemap">
+	<insert id="insert" parameterType="map">
+		insert into msg (msg_no,msg_from,msg_to,msg_content,msg_date,msg_read) values (seq_msg_no.nextval,#{msg_from},#{msg_to},#{msg_content},sysdate,'0')
+	</insert>
+	<select id="msgListByRecent" parameterType="map" resultType="map">
+		select msg_from,msg_to,msg_content,msg_read,to_char(msg_no) as MSG_NO,msg_date
+		from msg where ((msg_from = #{msg_from} and msg_to = #{msg_to}) or (msg_to = #{msg_from} and msg_from = #{msg_to})) and msg_no > to_number(#{msg_no}) order by msg_date
+	</select>
+	<update id="readMsg" parameterType="map">
+		update msg set msg_read = 1 where (msg_from=#{msg_to} and msg_to = #{msg_from})
+	</update>
+	<select id="allUnReadMsg" parameterType="map" resultType="String">
+		select count(msg_read) as msg_count from msg where msg_to=#{mem_id} and msg_read = 0
+	</select>
+	<select id="getmsgBox" parameterType="map" resultType="map">
+		 select * from msg where msg_no in (select max(msg_no) from msg where msg_to = #{mem_id} or msg_from = #{mem_id} group by msg_from,msg_to)
+	</select>
+</mapper>

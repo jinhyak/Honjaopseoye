@@ -1,9 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-<!-- 스타일시트/제이쿼리를 공통코드로 만들어 재사용 -->
-<script type="text/javascript" src="/spring_board/js/jquery-1.12.0.js"></script>
-<script type="text/javascript" src="/spring_board/js/jquery.easyui.min.js"></script>
-<script type="text/javascript" src="/spring_board/js/jquery.cookie.js"></script>
-<link rel="stylesheet" type="text/css" href="/spring_board/themes/default/easyui.css">
-<link rel="stylesheet" type="text/css" href="/spring_board/themes/icon.css">
-<link rel="stylesheet" type="text/css" href="/spring_board/demo/demo/css">
+<link rel="stylesheet" type="text/css" href="../Semantic/js/themes/icon.css?1">
+<link rel="stylesheet" type="text/css" href="../Semantic/js/demo/demo.css">
+<script type="text/javascript" src="../Semantic/js/jquery-1.12.0.js"></script>
+<script src="../Semantic/js/commons.js"></script>
+<script src="../Semantic/semantic.js"></script>
+<link rel="stylesheet" href="../Semantic/semantic.css"/>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
