@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mybatis.mapper.gubunMapper">
+	<select id="nSelect" parameterType="map" resultType="map">
+		select
+		noti_no,noti_title,noti_writer,noti_hit,noti_date
+		from notice 
+		where admin_id = #{admin_id}
+	</select>
+	<select id="qSelect" parameterType="map" resultType="map">
+		select fqa_title,fqa_writer,fqa_date
+		from fqa
+	</select>
+	<select id="qInsert" parameterType="map" resultType="map">
+		insert into fqa(fqa_no,fqa_title,fqa_category,fqa_pw,fqa_writer,fqa_hit,fqa_date,fqa_step,fqa_depth,fqa_group,admin_id)
+		values (seq_fqa_no,fqa_title,#{드롭박스},fqa_pw,#{mem_id},fqa_hit,to_char(sysdate,"YYYY-MM-DD"),0,0,fqa_group,admin_id)
+	</select>
+	<update id="qhit" parameterType="int">
+		update fqa
+		set fqa_hit = fqa_hit + 1
+		where fqa_no =:x
+	</update>
+	<select id="qGroup" parameterType="map" resultType="int">
+		SELECT
+		NVL((SELECT /*index_desc(fqa 인덱스 부여 fqa_group*/ fqa_group
+		FROM fqa
+		WHERE rownum = 1
+		AND fqa_group > 0),0)+1 fqa_group
+		FROM dual
+	</select>
+	<update id="qStep" parameterType="map">
+		update fqa
+		set fqa_step = fqa_step+1
+		where fqa_group = #{fqa_group} 
+		and fqa_step > #{fqa_step} 
+	</update>
+</mapper>
+

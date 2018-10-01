@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mybatis.mapper.memberMapper">
+	<!-- 읽지 않은 쪽지 갯수 구현 처리 -->
+	<select id="" parameterType="java.lang.String" resultType="int"> <!-- selectList|selectMap|selectOne -->
+	<!-- One - Object -->
+		SELECT count(*)
+  		  FROM memo
+ 		 WHERE to_id = 'test'
+   	 	   AND read_yn = 'N'
+	</select>
+	<!-- 받은 쪽지함 구현 쿼리 -->
+	<select id="receiveMemoList" parameterType="map" resultType="map">
+		SELECT memo.from_id, member.mem_name
+		  FROM member, memo
+		 WHERE member,mem_id = from_id
+		   AND memo.to_id = utl.encode.text_decode(#{to_id},'UTF8',1)
+	</select>
+	<!-- 쪽지 보내기 구현 쿼리 -->
+	<insert id="memoInsert" parameterType="map">
+		
+	</insert>
+	<!-- 우편번호 검색 쿼리 -->
+	<select id="zipCodeList" parameterType="java.lang.String"
+		resultType="map">
+		SELECT zipcode, address FROM zipcode_t
+		WHERE dong LIKE '%'||#{value}||'%'
+	</select>
+	<!-- 임시비번 발급 쿼리 -->
+	<select id="getImsiPW" parameterType="String"
+		resultType="String">
+		SELECT translate((
+		SELECT mem_pw
+		FROM member
+		WHERE mem_id = #{mem_id}
+		),'abcdeafghijklmnopqrstuvwxyz0123456789','1qazxsw23edcvfr45tgbnhy67ujmki89olp0')
+		from dual
+	</select>
+	<!-- 아이디가 존재하는지 체크 -->
+	<select id="idExist" parameterType="java.lang.String"
+		resultType="int">
+		select NVL((select 2 as status from dual
+		where exists(select mem_id from member where mem_id=#{value} AND
+		rownum=1)),-1) status
+		from dual
+	</select>
+	<insert id="memberInsert" parameterType="map">
+		Insert INTO
+		member(mem_no, mem_id, mem_pw, mem_name)
+		VALUES(seq_member_no.nextval
+		,#{mem_id}, #{mem_pw}, #{mem_name})
+	</insert>
+	<!-- 아이디와 비번 체크 주의 : 키값은 대문자! 세션에 담기 위해 req를 부른다. -->
+	<select id="getMemberList" resultType="map" parameterType="map">
+		SELECT mem_name, mem_id FROM member
+		<if test="mem_id!=null">
+			where mem_id = #{mem_id}
+		</if>
+		<if test="mem_pw!=null">
+			and mem_pw = #{mem_pw}
+		</if>
+	</select>
+	<select id="idCheck" resultType="map" parameterType="map">
+		select 1 from dual where exists(select mem_id from member where mem_id=:x);
+	</select>
+</mapper>
