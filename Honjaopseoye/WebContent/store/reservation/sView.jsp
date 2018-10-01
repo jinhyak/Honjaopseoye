@@ -14,7 +14,7 @@
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ header @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 <div class="ui header" style="margin-left: 150px;margin-right: 150px; margin-top: 100px;margin-bottom: 100px">
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ index @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-		<div class="ui field" style="height: 800px">
+		<div class="ui field">
 			<div class="ui stackable two column grid">
 				<div class="ui column">
 					<div class="ui segment">
@@ -22,14 +22,14 @@
 						<div class="ui center aligned basic segment">
 						<div class="ui header"><h2>가게이름</h2></div>
 							<div class="ui large image">
-								<img id="large_img" src="../../image/person.PNG">
+								<img id="large_img" src="../../image/person.PNG" style="width:500px; height:400px;">
 							</div>
 							<p/>
 							<div class="ui tiny images">
-								<img class="ui image" src="../../image/with.jpg">
-								<img class="ui image" src="../../image/with.jpg">
-								<img class="ui image" src="../../image/with.jpg">
-								<img class="ui image" src="../../image/with.jpg">
+								<img id="tiny_img1" class="ui tiny image" src="../../image/person.PNG">
+								<img id="tiny_img2" class="ui tiny image" src="../../image/logo.png">
+								<img id="tiny_img3" class="ui tiny image" src="../../image/mapimage.png">
+								<img id="tiny_img4" class="ui tiny image" src="../../image/with.jpg">
 							</div>
 						</div>
 						<div class="ui divider"></div>
@@ -46,9 +46,6 @@
 						정원 : 15인~50인<br>
 						특이사항 : 마이크O, 빔프로젝트X<br>
 						외부노출여부 : NO<br>
-						<br>
-						* 중요사항 : 온라인상으로 룸 좌석 확정이 어려우며, 매장상으로 유선상 확인이 필요합니다.
-						자세한 내용은 토다이 명동점 (02-3783-4200)으로 문의주세요.<br>
 					</div>
 				</div>
 				<div class="ui column">
@@ -118,10 +115,15 @@
 								</div>
 							</div>
 							<div class="ui row">
-
-								<button class="ui green fluid button" id="btn_reserv" type="submit">예약하기</button>
+								<button class="ui green fluid submit button" id="btn_reserv" type="submit">예약하기</button>
 							</div>
 							</div>
+						</div>
+					</div>
+					<div class="ui row">
+						<div class="ui segment">
+							<h3 style="color:red">* 중요사항 : 온라인상으로 룸 좌석 확정이 어려우며, 매장상으로 유선상 확인이 필요합니다.</h3>
+							<h4>자세한 내용은 토다이 명동점 (02-3783-4200)으로 문의주세요.</h4>
 						</div>
 					</div>
 				</div>
@@ -151,6 +153,24 @@ $('.dropdown').dropdown();
 $('.blue.button').click(function () {
 	var time = $(this).val();
 	$("#reserv_time").attr('value', time);
+});
+$(".tiny.image").click(function () {
+	var value = $(this).attr('src');
+	$("#large_img").attr('src',value);
+});
+$("#btn_reserv").click(function () {
+	if($("#datepicker").val()=='') {
+		alert("날짜를 입력하세요");
+	} else if($("#reserv_time").val()=='') {
+		alert("시간을 입력하세요");
+	} else if($("#reserv_people").val()=='') {
+		alert("인원을 입력하세요");
+	} else {
+		alert("예약이 완료되었습니다.");
+		$("#f_reserv").attr("method","post");
+		$("#f_reserv").attr("action","../../store/empty/reservation.test");
+		$("#f_reserv").submit();
+	}
 });
 </script>
 <style>
