@@ -1,131 +1,215 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="EUC-KR"%>
+    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<%@include file="../include/commonUI.jsp"%>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../Semantic/semantic.css" />
+<script src="../js/jquery-1.12.0.js"></script>
+<script src="../Semantic/semantic.js"></script>
 <title>글쓰기</title>
+<!--이미지 미리보기 스크립트 구간 -->
 <script type="text/javascript">
 
-function met() {
+// 이미지 미리보기
+$(document).ready(function(){
 	
-	var f = document.f_l.g_1;
+	var text = document.f_board.t_text;
 	
-	var g_1; // 텍스트
-	var snb; // 띄어쓰기
-	var br; // 줄바꿈
-
-	if (f.value.length == 1000) {
-		//alert("g_2로 넘어갑니다.");
-		//f.value.length = 0;
-		g_1 = f.value; // 컬럼1
-		alert("더 이상 글자를 추가할 수 없습니다.");
-	} else if(event.keyCode == 13){
-         //alert("엔터누름");
-         f.value += "<br>";
-    } else if(event.keyCode == 32){
-		//alert("스페이스바누름");
-		f.value += "&nbsp;";
-	}
-}
-	
-	var img_1; // 이미지1
-	
-	// 홈페이지가 시작하면....
-  	$(document).ready(function() {
-		// 필드 값
-	var f = document.f_l.g_1; // 텍스트 에리어 값
-		// 이미지1 버튼을 눌렀을 때
-
-		$("#b_ok").click(function() {
-			img_1 = $("#img_1").val();
-			img_1 = img_1.substring(17, 12);
-			f.value += "<br><img src='"+"./im/" + img_1 + "'>" + "<br>";
-			alert("이미지가 추가 되었습니다.");
-		});
-
-
-		// 레디 끝
-	})
-
-	// 이미지 미리보기를 계속 변경해줌...
-	$(function() {
-		$("#img_1").on('change', function() {
+ 	$(function() {
+		$("#img_file").change(function() {
 			readURL(this);
 		});
 	});
-	// 이미지 미리보기 정보
+	
 	function readURL(input) {
-		if (input.files && input.files[0]) {
-			var reader = new FileReader();
-			reader.onload = function(e) {
-				$('#blah').attr('src', e.target.result);
-			}
+		alert("이미지");
+		
+			if (input.files && input.files[0]) {
+				
+				var reader = new FileReader();
+			
+					reader.onload = function(e) {
+						$('#blah').attr('src', e.target.result);
+					}
 
-			reader.readAsDataURL(input.files[0]);
-		}
-	}
+				reader.readAsDataURL(input.files[0]);
+				} // if문
+				
+	} // readURL함수  
+	
+	
+	$("#b_img").click(function(){
+		
+		var formData = new FormData(document.getElementById('f_board'));
+		var img_file = $("#img_file").val();
+		img_file = img_file.substring(12);
+		
+		// 이미지 등록 처리
+		$.ajax({
+			method:"POST"
+		   ,url:"imageAjax.test"
+		   ,data:formData
+		   ,enctype:"multipart/form-data"
+		   ,contentType: false
+		   ,processData: false
+		   ,success:function(formData){
+			   
+				//img_file = img_file.substring(12);
+				text.value += "<br>" + "<img src='./images/" + img_file + "'>" +"<br>";
+				alert("이미지 태그가 추가 되었습니다.");
+			   
+		   }
+		   ,error:function(xhrObject){
+			   alert("error:"+xhrObject.responseText);
+		   }
+		});
+		
+	
+	});
+	
+	
+	$("#b_cancel").click(function(){
+		location.href="./boardList.jsp";
+	});
+	
+}) /* 레디 끝  */
+
+
+
 </script>
+<!-- 이미지 미리보기 스크립트 구간  끝-->
+
+<!-- 바디 스타일 -->
+<style>
+/* body {
+	background-image: url('writerBackground.jpg');
+} */
+
+</style>
+<!-- 바디 스타일 끝 -->
+
 </head>
+
+
 <body>
-	<div align="center">
-		<br> <br>
-		<!-- 게시판 등록 -->
-		<form method="post" action="./testwrite.jsp" id="f_l" name="f_l">
-			<table border="1" width="800px" height="480px">
-				<thead align="center">
-					<font size="5" color="black">글 쓰기</font>
-				</thead>
-				<tr>
-					<td><select name="bab_category" id="bab_category">
-							<option value="혼놀">혼놀</option>
-							<option value="혼술">혼술</option>
-							<option value="혼밥" selected="selected">혼밥</option>
-					</select>
-						<div class="ui input focus">
-							<input type="text" placeholder="제목입력"
-								style="width: 740px; height: 27px;" id="bab_title"
-								name="bab_title">
+<!-- 상단  -->
+
+<!-- 상단 끝 -->
+
+
+<!-- @@@@@@@@@@@@@@@@@@@@ 게시판 작성 form @@@@@@@@@@@@@@@@@@@@  -->
+<br>
+<br>
+<br>
+<form method="Post" action="./wView.jsp" id="f_board" name="f_board">
+
+<!-- 입력 게시판 테이블   -->
+<table align="center" border="1" width="800px" height="1000px" bgcolor="white">
+<!-- 게시판 머리  -->
+<thead align="center" style="width:800px; height:200px;">
+<tr>
+<td><img src="./images/logo.png" width="800px" height="200px"></td>
+</tr>
+</thead>
+<!-- 게시판 머리 끝  -->
+
+
+<!-- 테스트 -->
+
+
+<!-- 테스트 -->
+
+
+
+<!-- 게시판 입력 GUI  -->
+
+<tbody style="width:800px; height:500px;" >
+<tr>
+<!-- 기능 메뉴 -->
+<td width="800px" height="100px">
+
+<input type="text" style="width: 260px; height: 18px;" placeholder="동영상URL" id="post_url" name="post_url">
+<input type="file" id="img_file" name="img_file" accept=".gif, .jpg, .png">
+</td>
+<!-- 기능 메뉴 끝 -->
+</tr>
+
+<!-- 글쓰기 -->
+<tr>
+<!-- 콤보박스  -->
+<td width="800px" height="400px">
+<select name="bab_category" id="bab_category">
+<option value="혼놀">혼놀</option>
+<option value="혼술">혼술</option>
+<option value="혼밥" selected="selected">혼밥</option>
+</select>
+&nbsp;&nbsp;
+<!-- 제목입력  -->
+<div class="ui input focus">
+<input type="text" placeholder="제목입력" style="width:730px; height:23px;" id="bab_title" name="bab_title">
+</div>
+<!-- 글 입력 -->
+<textarea style="width: 800px; height:600px;" id="t_text" name="t_text"></textarea>
+<!-- 글 입력끝 -->
+
+</td>
+<!-- 글쓰기 끝 -->
+</tr>
+
+</tbody>
+
+<!-- 게시판 입력 GUI 끝  -->
+
+<!-- 테이블 하단 -->
+
+ <tfoot align="center" style="width:800px; height:300px;">
+        <!-- 이미지 미리보기  -->
+        <!-- 이미지 미리보기 타이틀  -->
+        <tr>
+        <td><font size="3" color="blue">@이미지 미리보기@</font></td>
+        </tr>
+        <tr>
+            <td width="200px" height="200px" align="center">
+            <br>
+			<img align="middle" id="blah" src="#" alt="" width="200px" height="200px" />
+               <br>
+               <br>
+               <div class="ui animated button" tabindex="0" id="b_img" name="b_img">
+  				<div class="visible content">이미지 등록</div>
+ 				 <div class="hidden content">
+ 				   <i class="right arrow icon"></i>
+ 					 </div>
 						</div>
-						<div class="ui input focus">
-							<br> <input type="text" style="width: 140px; height: 18px;"
-								placeholder="동영상URL" id="post_url" name="post_url">
-						</div> <input align="middle" type="file" id="img_1" name="img_1"
-						style="width: 20px; height: 20px;" accept="*.jpg"> <!-- <input type="button" value="이미지 추가" onClick="met()"> -->
-						<div class="ui form">
-							<div class="field" align="center">
-								<textarea style="width: 800px; height: 800px;" id="g_1"
-									name="g_1" onkeydown="met()">
-							</textarea>
-								<br> <br>
-								<button class="negative ui button" id="c_b" name="c_b">취소하기</button>
-								&nbsp;&nbsp;&nbsp;
-								<button class="positive ui button" id="i_b" name="i_b">등록하기</button>
-								<input type="submit">
-							</div>
-						</div></td>
-					<td>
-						<table width="200px" height="480px">
-							<thead>
-								<tr>
-									<td align="center">이미지 파일 미리보기</td>
-								</tr>
-							</thead>
-							<tr>
-								<td align="center">
-									<form id="form1" runat="server">
-										<img align="middle" id="blah" src="#" alt=""
-											width="300px" height="250px" /> <br> <br> <input
-											type="button" id="b_ok" name="b_ok" value="올리기"> <br>
-										<br>
-									</form>
-								</td>
-							</tr>
-						</table>
-					</td>
-				</tr>
-			</table>
-	</div>
-</body>
-</html>
+						<br>
+               <br>
+            </td>
+        </tr>
+        
+        <!-- 버튼 GUI  -->
+        <tr>
+        <td width="800px" height="100px">
+        <button class="negative ui button" id="b_cancel" name="b_cancel">취소하기</button>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<button class="positive ui button" id="b_insert" name="b_insert">등록하기</button>
+        </td>
+        </tr>
+        
+    </tfoot>
+
+<!-- 테이블 하단 끝 -->
+
+</table>
+
+</form>
+<!-- 입력 게시판 테이블 끝  -->
+
+
+<br>
+<br>
+<br>
+
+<!-- @@@@@@@@@@@@@@@@@@@@ 게시판 작성 form 끝 @@@@@@@@@@@@@@@@@@@@ -->
+
+<!-- 하단  -->
