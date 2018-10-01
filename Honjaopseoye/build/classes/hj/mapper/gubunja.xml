@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mybatis.mapper.gubunMapper">
+	<select id="gubunja" parameterType="map" resultType="map">
+		SELECT string 
+		FROM gubunja 
+		WHERE column1 = #{g_bun1} AND column2=#{g_bun2}
+	</select>
+	<select id="content" parameterType="list" resultType="list">
+		SELECT p.meida,w.mundan1,p.pic1,w.mundan2,p.pic2,w.mundan3,p.pic3,w.mundan4,p.pic4,w.mundan5,p.pic5,
+			FROM wcontent w, posting p
+			WHERE w.#{w_rno} = p.#{w_rno}
+	</select>
+</mapper>

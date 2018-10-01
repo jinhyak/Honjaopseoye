@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mybatis.mapper.friendMapper">
+	<select id="fSelect" parameterType="map">
+		SELECT mem_id
+		FROM members
+		WHERE mem_id = 
+		(select fri_id from friend_info where mem_id=#{mem_id})
+	</select>
+	<insert id="fInsert" parameterType="map">
+		INSERT INTO fiend(fri_id)
+		VALUES (#{mem_id})
+	</insert>
+	<select id="fView" parameterType="map">
+		SELECT mem_id,mem_name,mem_email,mem_birth,mem_gender
+		FROM members
+		WHERE mem_id = #{mem_id}
+	</select>
+	<select id="mSelect" parameterType="map">
+		SELECT msg_from, msg_read
+		FROM msg
+		WHERE msg_from = #{msg_from}
+	</select>
+	<select id="mView" parameterType="map">
+		SELECT msg_to,msg_cotent,msg_read
+		FROM msg
+		WHERE msg_from = #{msg_from}
+	</select>
+	<insert id="mInsert" parameterType="map">
+		INSERT INTO msg(msg_no,msg_from,msg_to,msg_content,msg_read)
+		VALUES (seq_msg_no,msg_from,msg_to,msg_content,msg_read)
+	</insert>
+</mapper>

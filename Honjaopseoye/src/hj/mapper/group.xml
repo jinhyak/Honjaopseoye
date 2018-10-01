@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mybatis.mapper.groupMapper">
+	<select id="gSelect" parameterType="map">	
+	select bang_no,bang_name,bang_limit_people,bang_cur_people,bang_memo,bang_money,bang_addr,bang_date
+	,(select gstring from bang b, gubunja gb WHERE b.bang_age = gb.gprotocol AND  b.bang_no = 1)"연령대"
+    ,(select gstring from bang b, gubunja gb WHERE b.bang_topic = gb.gprotocol AND  b.bang_no = 1)"관심주제"
+    ,(select gstring from bang b, gubunja gb WHERE b.bang_time = gb.gprotocol AND  b.bang_no = 1)"시간대"    
+	from bang
+	where bang_no=#{bang_no}
+	</select>
+	<!-- 상세보기 필요없을듯? -->
+	<insert id="gInsert" parameterType="map">
+	insert into(bang_no,bang_id,bang_name,bang_limit_people,bang_cur_people,bang_memo,bang_money,bang_addr,bang_age,bang_topic,bang_time,bang_date)
+	values(seq_bang_no.nextval(),#{bang_id},#{bang_name},#{bang_limit_people},1,#{bang_memo},#{bang_money,#{bang_addr},#{bang_age},#{bang_topic},#{bang_time},to_char(sysdate,"YYYY-MM-DD"))
+	</insert>
+	<update id="gPlus" parameterType="int">
+		update bang
+		set bang_cur_people = bang_cur_people + 1
+		where bang_no =#{bang_no}
+	</update>
+	<update id="gMinus" parameterType="int">
+		update bang
+		set bang_cur_people = bang_cur_people - 1
+		where bang_no =#{bang_no}
+	</update>
+	<update id="gUpdate" parameterType="map">
+		update bang
+		set bang_no = #{bang_no}  
+		,bang_name = #{bang_name} 
+		,bang_limit_people = #{bang_limit_people}
+		,bang_memo = #{bang_memo}
+		,bang_money = #{bang_memo}
+		,bang_age = #{bang_age}
+		,bang_topic = #{bang_topic}
+		,bang_time = #{bang_time}
+	</update>
+	<insert id="report" parameterType="map">
+		INSERT INTO police(pol_no,pol_reason,pol_from,pol_to)
+		VALUES(seq_pol_no.nextval,#{pol_reason},#{pol_from},#{pol_to})
+	</insert>
+</mapper>

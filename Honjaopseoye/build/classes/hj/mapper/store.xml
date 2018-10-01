@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mybatis.mapper.storeMapper">
+	<!-- 예약하기 -->
+	<insert id="rInsert" parameterType="map">
+		INSERT INTO
+		reservation(b_no,b_seq,b_file,b_img)
+		VALUES(seq_board_no.nextval,
+		#{b_seq},#{b_file},#{b_img})
+	</insert>
+	<!-- 예약취소 -->
+	<!-- sDelete -->
+	<!-- 가게목록보기 -->
+	<select id="sSelect" parameterType="map">
+		<!--@@ 테이블수정필요 -->
+		<!-- 조건 검색 -->
+		SELECT
+		no,tel,addr,name,latitude,longitude,business,introduce,socre,hit,img,homepage,price
+		FROM store
+		WHERE map =
+		<where>
+			<if test='업종 == ""'>
+				AND protocol = #{protocol}
+			</if>
+			<if test='가격대 == ""'>
+				AND price = #{price}
+			</if>
+		</where>
+	</select>
+	<!-- 가게 등록하기 -->
+	<insert id="sInsert" parameterType="map">
+		INSERT INTO store
+		(store_no,store_homepage,store_addr,store_price,store_review,store_star,store_hit,store_name,store_img)
+		VALUES
+		(seq_store_no.nextval,#{store_homepage},#{store_addr},#{store_price},,0,0,#{store_name},#{store_img})
+	</insert>
+	<!-- 가게 상세보기 -->
+	<select id="sView" parameterType="map">
+		SELECT
+		store_no,store_homepage,store_addr,store_price,store_review,store_star,store_hit,store_name,store_img
+		,(select gstring from store st, jinhyeok jh WHERE st.store_hit =
+		jh.gprotocol AND st.store_no = 1)"업종"
+		FROM store
+		where store_no = 1
+	</select>
+	<!-- sView -->
+	<!-- 프리미엄 가게보기 -->
+	<select id="premium" parameterType="map">
+		select *
+		from (select RANK()
+		OVER (ORDER BY store_hit DESC )"랭크",
+		store_name,store_img,store_price,store_hit from store)
+		where 
+		<![CDATA[ "랭크" <= 2 ]]>
+	</select>
+	<!-- 등급관리 -->
+<!-- 가게 상세보기 후 -->
+	<!-- 리뷰보기 -->
+	<select id="pSelect" parameterType="map">
+		select re_date,re_writer,content
+		from reply
+		where re_no=#{re_no}
+	</select>
+	<!-- 리뷰쓰기 -->
+	<insert id="pInsert" parameterType="map">
+		insert into reply (re_date,re_writer,content,re_no,store_no)
+		values(to_char(sysdate, 'yyyy-mm-dd'),#{re_writer},#{content},seq_re_no.nextval(),#{store_no})
+	</insert>
+	<!-- 페이지네이션 : 게시글 수세기 -->
+	<select id="totalCount" parameterType="int" resultType="int">
+		SELECT
+		count(*) total
+		FROM store
+		WHERE gubun = #{gubun}
+	</select>
+</mapper>
+
+        
