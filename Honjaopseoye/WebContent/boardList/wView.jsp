@@ -11,7 +11,7 @@
    String bab_title = hc.toUTF(request.getParameter("bab_title")); // 제목
    String t_text = hc.toUTF(request.getParameter("t_text")); // 글
    String post_url = hc.toUTF(request.getParameter("post_url")); // 동영상 URL
-   String bab_category = hc.toUTF(request.getParameter("bab_category")); // 구분 
+   String bab_category = hc.toUTF(request.getParameter("bab_category")); // 구분
    %>
     
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
