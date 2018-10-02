@@ -137,7 +137,7 @@ public class MemberController implements ControllerForm{
 			}
 			else if("pwSearch".equals(wMap.get("Daoname"))) {
 				HttpSession mem_session = req.getSession();
-				mem_session.setAttribute("pwSearch", rMap.get("pwSearch"));
+				mem_session.setAttribute("pwSearch", rMap.get("pwSearch").toString());
 				String path = "../../member/login/pwFound.jsp";
 				view.setPath(path);
 				view.setRedirect(true);

@@ -155,26 +155,28 @@ public class MemberDao implements DaoForm{
 		   
 		   return result;
 	   }
-	   public List<Map<String, Object>> pwSearch(Map<String, Object> pMap) throws IOException {
-		      logger.info("pwSearch:"+pMap);
-		      logger.info(pMap.get("mem_id"));
-		      logger.info(pMap.get("mem_tel"));
-		      List<Map<String, Object>> pwSearch = null;
-		      sqls = dbmgr.connection();
-		      pwSearch = sqls.selectList("pwSearch", pMap);
-		      //String user_pw = idSearch.get(0).get("mem_pw").toString();
-		      logger.info("pwSearch : "+pwSearch);
-		      return pwSearch;
+		   
+		   public String proc_pw3(Map<String, Object> pMap) throws IOException {
+			      logger.info("proc_pw3:"+pMap);
+			      String res = "";
+			      logger.info(pMap.get("mem_id").toString());
+			      logger.info(pMap.get("mem_tel").toString());
+			      sqls = dbmgr.connection();
+			      sqls.selectOne("proc_pw", pMap);
+			      res = pMap.get("res").toString();
+			      logger.info("proc_pw : "+res);
+			      return res;
+			   }
+		   public String proc_epw(Map<String, Object> pMap) throws IOException {
+			   logger.info("proc_pw3:"+pMap);
+			   String res = "";
+			   logger.info(pMap.get("e_id").toString());
+			   logger.info(pMap.get("e_mail").toString());
+			   sqls = dbmgr.connection();
+			   sqls.selectOne("proc_epw", pMap);
+			   res = pMap.get("res").toString(); 
+			   logger.info("proc_pw : "+res);
+			   return res;
 		   }
-		   public List<Map<String, Object>> e_pwSearch(Map<String, Object> pMap) throws IOException {
-		      logger.info("e_pwSearch:"+pMap);
-		      List<Map<String, Object>> e_pwSearch = null;
-		      logger.info(pMap.get("e_id"));
-		      logger.info(pMap.get("e_mail"));
-		      sqls = dbmgr.connection();
-		      e_pwSearch = sqls.selectList("e_pwSearch", pMap);
-		      logger.info("e_idSearch : "+e_pwSearch);
-		      return e_pwSearch;
-		   }
-	   
+		   
 }

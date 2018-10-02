@@ -207,8 +207,8 @@ public abstract class AbstractLogic {
 	    }
 	    else if("pwSearch".equals(Daoname)) {
 	    	logger.info("AbLogic : pwSearch 호출 성공");
-	    	list = mdao.pwSearch(pMap);
-	    	rMap.put("pwSearch", list);
+	    	str = mdao.proc_pw3(pMap);
+	    	rMap.put("pwSearch", str);
 	    }
 	    else if("pwCheck2".equals(Daoname)) {
 	    	logger.info("AbLogic : pwCheck2 호출 성공");
@@ -217,8 +217,8 @@ public abstract class AbstractLogic {
 	    }
 	    else if("e_pwSearch".equals(Daoname)) {
 	    	logger.info("AbLogic : e_pwSearch 호출 성공");
-	    	list = mdao.e_pwSearch(pMap);
-	    	rMap.put("e_pwSearch", list);;
+	    	str = mdao.proc_epw(pMap);
+	    	rMap.put("e_pwSearch", str);
 	    }
 		else if("delete".equals(Daoname)) {
 			int result= mdao.delete(pMap);

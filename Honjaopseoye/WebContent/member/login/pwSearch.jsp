@@ -202,14 +202,14 @@
                                                 style="margin-left: 5px; width: 250px">
                                           </div>
                                        </div>
-                                       <div class="ui column container" style="padding-bottom: 8px;">
+                                       <div class="ui column container" >
                                           <span style="margin-right: 31px"><label>휴대전화</label></span>
                                           <div class="ui input focus" 
                                              style="width: 250px">
                                              <input type="text" placeholder="전화번호를 입력해주세요." id="mem_tel" name="mem_tel">
                                           </div>
                                        </div>
-                                       <div style="margin-top: 10px; margin-left: 170px;">
+                                       <div style="margin-top: 10px; margin-left: 90px;">
                                           <button class="ui gray button" id="btn_search" type="button" onClick="btn_find()"
                                               style="width: 250px;">비밀번호 찾기</button>
                                        </div>
@@ -248,7 +248,7 @@
                                                 style="margin-left: 45px;">
                                           </div>
                                           <div style="margin-top: 10px; margin-left: 90px;">
-                                             <button class="ui gray button" type="button" style="width: 250px;" onClick="btn_efind()">비밀번호   찾기</button>
+                                             <button class="ui gray button" type="button" style="width: 263px;" onClick="btn_efind()">비밀번호   찾기</button>
                                           </div>
                                        </div>
                                     </div>

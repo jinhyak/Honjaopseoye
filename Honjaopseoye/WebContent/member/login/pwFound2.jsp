@@ -3,14 +3,11 @@
 <%@ page import="java.util.*" %>  
 <%@ include file="../../include/include/commonUI.jsp"%>
 <% 
-   String smem_pw = null;
-   String smem_name = null;
+   String imsiPw = null;
    if(session.getAttribute("e_pwSearch")!=null){
-      List<Map<String, Object>> sid = (List<Map<String, Object>>)session.getAttribute("e_pwSearch");
-      smem_pw = sid.get(0).get("MEM_PW").toString();
-      smem_name = sid.get(0).get("MEM_NAME").toString();
+	   imsiPw = session.getAttribute("e_pwSearch").toString();
    }
-%>     
+%>      
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,7 +39,7 @@
                      </div>
                      <div class="center aligned column" style="height:25%; vertical-align:middle;">
                         <div class="ui segment" style="width: 100%; padding-top:30px;">
-                          	<font size="6"> <%= smem_name %>님의 비밀번호는&nbsp;&nbsp;<font size="10" face="arial" color="#f7786b"><%= smem_pw %>&nbsp;</font>입니다.</font>
+                          	<font size="6"> 임시 비밀번호는&nbsp;&nbsp;<font size="10" face="arial" color="#f7786b"><%= imsiPw %>&nbsp;</font>입니다.</font>
                         <div style="margin-top:50px;">
                         	 <button class="ui gray button" onClick="btn_login()" style="width:250px; height:50px" onClick="btn_find()">로그인</button>
                         </div>

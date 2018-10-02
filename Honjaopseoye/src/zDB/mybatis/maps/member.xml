@@ -104,4 +104,31 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    			and mem_email = #{e_mail}
    		</if>
    </select>
+
+	<!-- <resultMap id="Rsearch_pw" type="java.util.HashMap"/>
+   	<select id="proc_pw" parameterType="map" resultMap="map" statementType="CALLABLE">
+		{call proc_pw3(#{key, mode=OUT, jdbcType=VARCHAR, javaType=java.util.HashMap, resultMap=Psearch_pw})}
+	</select>	key : alias명 -> map타입, map인턴-> 맵에 키값이 저장이(파라미터로 넘기는 맵에 담김) = 꺼낼 때 쓰는 정보 map(parametermap)에 parameter에는 키 값만 담김
+	resultMap은 쓰임이 있음 실제로 값이 담기는것은 resultMap타입=> 위에 선언이 되어 있어야함. property로 값을 꺼냄 -->
+	
+	<resultMap id="Rsearch_pw" type="java.util.HashMap"/>
+	<select id="proc_pw" parameterType="map"  statementType="CALLABLE">
+		{call proc_pw3(
+		  #{mem_id,mode=IN,jdbcType=VARCHAR,javaType=java.lang.String}
+		  ,#{mem_tel,mode=IN,jdbcType=VARCHAR,javaType=java.lang.String}<!-- 이거는 파라미터로 들어오는 것 in -->
+		  ,#{res,mode=OUT,jdbcType=VARCHAR,javaType=java.lang.String} <!-- out은 pMap.put("res","a12345") --> 
+		  <!-- resultMap은 cursor일 때 -->
+		  )
+		}
+	</select>                    
+	<resultMap id="Research_pw" type="java.util.HashMap"/>
+	<select id="proc_epw" parameterType="map"  statementType="CALLABLE">
+		{call proc_epw(
+		  #{e_id,mode=IN,jdbcType=VARCHAR,javaType=java.lang.String}
+		  ,#{e_mail ,mode=IN,jdbcType=VARCHAR,javaType=java.lang.String}<!-- 이거는 파라미터로 들어오는 것 in -->
+		  ,#{res,mode=OUT,jdbcType=VARCHAR,javaType=java.lang.String} <!-- out은 pMap.put("res","a12345") --> 
+		  <!-- resultMap은 cursor일 때 -->
+		  )
+		}
+	</select>                    
 </mapper>
