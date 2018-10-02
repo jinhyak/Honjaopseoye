@@ -15,9 +15,20 @@
 <div class="ui header" style="margin-left: 150px;margin-right: 150px; margin-top: 100px;margin-bottom: 100px">
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ index @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 		<div class="ui field">
-			<div class="ui stackable two column grid">
-				<div class="ui column">
-					<div class="ui segment">
+			<div class="ui blue three item inverted top attached tabular menu">
+			  <a id="m_reservation" class="item active">
+			  	예약하기
+			  </a>
+			  <a id="m_reserv_list" class="item">
+			  	예약조회
+			  </a>
+			  <a id="m_reserv_history" class="item">
+			  	예약내역
+			  </a>
+			</div>
+			<div id="reservation" class="ui blue bottom attached segment">
+				<div class="ui stackable two column grid">
+					<div class="ui column">
 						<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 말머리 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 						<div class="ui center aligned basic segment">
 						<div class="ui header"><h2>가게이름</h2></div>
@@ -47,7 +58,6 @@
 						특이사항 : 마이크O, 빔프로젝트X<br>
 						외부노출여부 : NO<br>
 					</div>
-				</div>
 				<div class="ui column">
 					<div class="ui segment">
 						<div class="ui form" id="f_reserv">
@@ -130,6 +140,7 @@
 			</div>
 		</div>
 	</div>
+</div>
 <script type="text/javascript">
 $(function() {
 	$("#datepicker").datepicker({
@@ -170,6 +181,20 @@ $("#btn_reserv").click(function () {
 		$("#f_reserv").attr("method","post");
 		$("#f_reserv").attr("action","../../store/empty/reservation.test");
 		$("#f_reserv").submit();
+	}
+});
+$(".menu").find('a').click(function() {
+	$(".menu").find('a').attr('class','item');//active 초기화
+	$(this).attr('class','item active');//누른메뉴 active로 변경
+	if($(this).attr('id')=='m_reservation'){
+		$("#reservation").show();
+	}
+	else if($(this).attr('id')=='m_reserv_list'){
+		location.href="./reserv.jsp";
+	}
+	else if($(this).attr('id')=='m_reserv_history'){
+		$("#reservation").hide();
+		$("#reserv_list").hide();
 	}
 });
 </script>
