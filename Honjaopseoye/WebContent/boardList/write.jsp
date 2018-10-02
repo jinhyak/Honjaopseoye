@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
     
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -8,11 +8,11 @@
 <link rel="stylesheet" href="../Semantic/semantic.css" />
 <script src="../Semantic/js/jquery-1.12.0.js"></script>
 <script src="../Semantic/semantic.js"></script>
-<title>±Û¾²±â</title>
-<!--ÀÌ¹ÌÁö ¹Ì¸®º¸±â ½ºÅ©¸³Æ® ±¸°£ -->
+<title>ê¸€ì“°ê¸°</title>
+<!--ì´ë¯¸ì§€ ë¯¸ë¦¬ë³´ê¸° ìŠ¤í¬ë¦½íŠ¸ êµ¬ê°„ -->
 <script type="text/javascript">
 
-// ÀÌ¹ÌÁö ¹Ì¸®º¸±â
+// ì´ë¯¸ì§€ ë¯¸ë¦¬ë³´ê¸°
 $(document).ready(function(){
 	
 	var text = document.f_board.t_text;
@@ -24,7 +24,7 @@ $(document).ready(function(){
 	});
 	
 	function readURL(input) {
-		alert("ÀÌ¹ÌÁö");
+		alert("ì´ë¯¸ì§€");
 		
 			if (input.files && input.files[0]) {
 				
@@ -35,9 +35,9 @@ $(document).ready(function(){
 					}
 
 				reader.readAsDataURL(input.files[0]);
-				} // if¹®
+				} // ifë¬¸
 				
-	} // readURLÇÔ¼ö  
+	} // readURLí•¨ìˆ˜  
 	
 	
 	$("#b_img").click(function(){
@@ -46,7 +46,7 @@ $(document).ready(function(){
 		var img_file = $("#img_file").val();
 		img_file = img_file.substring(12);
 		
-		// ÀÌ¹ÌÁö µî·Ï Ã³¸®
+		// ì´ë¯¸ì§€ ë“±ë¡ ì²˜ë¦¬
 		$.ajax({
 			method:"POST"
 		   ,url:"../board/empty/imageAjax.test"
@@ -58,7 +58,7 @@ $(document).ready(function(){
 			   
 				//img_file = img_file.substring(12);
 				text.value += "<br>" + "<img src='./images/" + img_file + "'>" +"<br>";
-				alert("ÀÌ¹ÌÁö ÅÂ±×°¡ Ãß°¡ µÇ¾ú½À´Ï´Ù.");
+				alert("ì´ë¯¸ì§€ íƒœê·¸ê°€ ì¶”ê°€ ë˜ì—ˆìŠµë‹ˆë‹¤.");
 			   
 		   }
 		   ,error:function(xhrObject){
@@ -74,101 +74,101 @@ $(document).ready(function(){
 		location.href="./boardList.jsp";
 	});
 	
-}) /* ·¹µğ ³¡  */
+}) /* ë ˆë”” ë  */
 
 
 
 </script>
-<!-- ÀÌ¹ÌÁö ¹Ì¸®º¸±â ½ºÅ©¸³Æ® ±¸°£  ³¡-->
+<!-- ì´ë¯¸ì§€ ë¯¸ë¦¬ë³´ê¸° ìŠ¤í¬ë¦½íŠ¸ êµ¬ê°„  ë-->
 
-<!-- ¹Ùµğ ½ºÅ¸ÀÏ -->
+<!-- ë°”ë”” ìŠ¤íƒ€ì¼ -->
 <style>
 /* body {
 	background-image: url('writerBackground.jpg');
 } */
 
 </style>
-<!-- ¹Ùµğ ½ºÅ¸ÀÏ ³¡ -->
+<!-- ë°”ë”” ìŠ¤íƒ€ì¼ ë -->
 
 </head>
 
 
 <body>
-<!-- »ó´Ü  -->
+<!-- ìƒë‹¨  -->
 
-<!-- »ó´Ü ³¡ -->
+<!-- ìƒë‹¨ ë -->
 
 
-<!-- @@@@@@@@@@@@@@@@@@@@ °Ô½ÃÆÇ ÀÛ¼º form @@@@@@@@@@@@@@@@@@@@  -->
+<!-- @@@@@@@@@@@@@@@@@@@@ ê²Œì‹œíŒ ì‘ì„± form @@@@@@@@@@@@@@@@@@@@  -->
 <br>
 <br>
 <br>
 <form method="Post" action="./wView.jsp" id="f_board" name="f_board">
 
-<!-- ÀÔ·Â °Ô½ÃÆÇ Å×ÀÌºí   -->
+<!-- ì…ë ¥ ê²Œì‹œíŒ í…Œì´ë¸”   -->
 <table align="center" border="1" width="800px" height="1000px" bgcolor="white">
-<!-- °Ô½ÃÆÇ ¸Ó¸®  -->
+<!-- ê²Œì‹œíŒ ë¨¸ë¦¬  -->
 <thead align="center" style="width:800px; height:200px;">
 <tr>
 <td><img src="./images/logo.png" width="800px" height="200px"></td>
 </tr>
 </thead>
-<!-- °Ô½ÃÆÇ ¸Ó¸® ³¡  -->
+<!-- ê²Œì‹œíŒ ë¨¸ë¦¬ ë  -->
 
 
-<!-- Å×½ºÆ® -->
+<!-- í…ŒìŠ¤íŠ¸ -->
 
 
-<!-- Å×½ºÆ® -->
+<!-- í…ŒìŠ¤íŠ¸ -->
 
 
 
-<!-- °Ô½ÃÆÇ ÀÔ·Â GUI  -->
+<!-- ê²Œì‹œíŒ ì…ë ¥ GUI  -->
 
 <tbody style="width:800px; height:500px;" >
 <tr>
-<!-- ±â´É ¸Ş´º -->
+<!-- ê¸°ëŠ¥ ë©”ë‰´ -->
 <td width="800px" height="100px">
 
-<input type="text" style="width: 260px; height: 18px;" placeholder="µ¿¿µ»óURL" id="post_url" name="post_url">
+<input type="text" style="width: 260px; height: 18px;" placeholder="ë™ì˜ìƒURL" id="post_url" name="post_url">
 <input type="file" id="img_file" name="img_file" accept=".gif, .jpg, .png">
 </td>
-<!-- ±â´É ¸Ş´º ³¡ -->
+<!-- ê¸°ëŠ¥ ë©”ë‰´ ë -->
 </tr>
 
-<!-- ±Û¾²±â -->
+<!-- ê¸€ì“°ê¸° -->
 <tr>
-<!-- ÄŞº¸¹Ú½º  -->
+<!-- ì½¤ë³´ë°•ìŠ¤  -->
 <td width="800px" height="400px">
 <select name="bab_category" id="bab_category">
-<option value="È¥³î">È¥³î</option>
-<option value="È¥¼ú">È¥¼ú</option>
-<option value="È¥¹ä" selected="selected">È¥¹ä</option>
+<option value="í˜¼ë†€">í˜¼ë†€</option>
+<option value="í˜¼ìˆ ">í˜¼ìˆ </option>
+<option value="í˜¼ë°¥" selected="selected">í˜¼ë°¥</option>
 </select>
 &nbsp;&nbsp;
-<!-- Á¦¸ñÀÔ·Â  -->
+<!-- ì œëª©ì…ë ¥  -->
 <div class="ui input focus">
-<input type="text" placeholder="Á¦¸ñÀÔ·Â" style="width:730px; height:23px;" id="bab_title" name="bab_title">
+<input type="text" placeholder="ì œëª©ì…ë ¥" style="width:730px; height:23px;" id="bab_title" name="bab_title">
 </div>
-<!-- ±Û ÀÔ·Â -->
+<!-- ê¸€ ì…ë ¥ -->
 <textarea style="width: 800px; height:600px;" id="t_text" name="t_text"></textarea>
-<!-- ±Û ÀÔ·Â³¡ -->
+<!-- ê¸€ ì…ë ¥ë -->
 
 </td>
-<!-- ±Û¾²±â ³¡ -->
+<!-- ê¸€ì“°ê¸° ë -->
 </tr>
 
 </tbody>
 
-<!-- °Ô½ÃÆÇ ÀÔ·Â GUI ³¡  -->
+<!-- ê²Œì‹œíŒ ì…ë ¥ GUI ë  -->
 
-<!-- Å×ÀÌºí ÇÏ´Ü -->
+<!-- í…Œì´ë¸” í•˜ë‹¨ -->
 
  <tfoot align="center" style="width:800px; height:300px;">
-        <!-- ÀÌ¹ÌÁö ¹Ì¸®º¸±â  -->
-        <!-- ÀÌ¹ÌÁö ¹Ì¸®º¸±â Å¸ÀÌÆ²  -->
+        <!-- ì´ë¯¸ì§€ ë¯¸ë¦¬ë³´ê¸°  -->
+        <!-- ì´ë¯¸ì§€ ë¯¸ë¦¬ë³´ê¸° íƒ€ì´í‹€  -->
         <tr>
-        <td><font size="3" color="blue">@ÀÌ¹ÌÁö ¹Ì¸®º¸±â@</font></td>
+        <td><font size="3" color="blue">@ì´ë¯¸ì§€ ë¯¸ë¦¬ë³´ê¸°@</font></td>
         </tr>
         <tr>
             <td width="200px" height="200px" align="center">
@@ -177,7 +177,7 @@ $(document).ready(function(){
                <br>
                <br>
                <div class="ui animated button" tabindex="0" id="b_img" name="b_img">
-  				<div class="visible content">ÀÌ¹ÌÁö µî·Ï</div>
+  				<div class="visible content">ì´ë¯¸ì§€ ë“±ë¡</div>
  				 <div class="hidden content">
  				   <i class="right arrow icon"></i>
  					 </div>
@@ -187,29 +187,29 @@ $(document).ready(function(){
             </td>
         </tr>
         
-        <!-- ¹öÆ° GUI  -->
+        <!-- ë²„íŠ¼ GUI  -->
         <tr>
         <td width="800px" height="100px">
-        <button class="negative ui button" id="b_cancel" name="b_cancel">Ãë¼ÒÇÏ±â</button>
+        <button class="negative ui button" id="b_cancel" name="b_cancel">ì·¨ì†Œí•˜ê¸°</button>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<button class="positive ui button" id="b_insert" name="b_insert">µî·ÏÇÏ±â</button>
+		<button class="positive ui button" id="b_insert" name="b_insert">ë“±ë¡í•˜ê¸°</button>
         </td>
         </tr>
         
     </tfoot>
 
-<!-- Å×ÀÌºí ÇÏ´Ü ³¡ -->
+<!-- í…Œì´ë¸” í•˜ë‹¨ ë -->
 
 </table>
 
 </form>
-<!-- ÀÔ·Â °Ô½ÃÆÇ Å×ÀÌºí ³¡  -->
+<!-- ì…ë ¥ ê²Œì‹œíŒ í…Œì´ë¸” ë  -->
 
 
 <br>
 <br>
 <br>
 
-<!-- @@@@@@@@@@@@@@@@@@@@ °Ô½ÃÆÇ ÀÛ¼º form ³¡ @@@@@@@@@@@@@@@@@@@@ -->
+<!-- @@@@@@@@@@@@@@@@@@@@ ê²Œì‹œíŒ ì‘ì„± form ë @@@@@@@@@@@@@@@@@@@@ -->
 
-<!-- ÇÏ´Ü  -->
+<!-- í•˜ë‹¨  -->
