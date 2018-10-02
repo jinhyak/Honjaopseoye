@@ -92,12 +92,29 @@
 								
 								
 								
-<div class="ui compact menu">
-  <a class="item">
-    <i class="icon mail"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 메시지
-    </font></font><div class="floating ui red label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">22</font></font></div>
-  </a>
-</div>
+<table class="ui celled striped table">
+  <thead>
+    <tr><th colspan="3"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+      힘 저장소
+    </font></font></th>
+  </tr></thead>
+  <tbody>
+    <tr>
+      <td class="collapsing">
+        <i class="folder icon"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> node_modules
+      </font></font></td>
+      <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">초기 커밋</font></font></td>
+      <td class="right aligned collapsing"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">10 시간 전</font></font></td>
+    </tr>
+    <tr>
+      <td>
+        <i class="folder icon"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 테스트
+      </font></font></td>
+      <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">초기 커밋</font></font></td>
+      <td class="right aligned"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">10 시간 전</font></font></td>
+    </tr>
+  </tbody>
+</table>
 								<script type="text/javascript">
 								$('.button').click(function(){
 									var button=$(this)

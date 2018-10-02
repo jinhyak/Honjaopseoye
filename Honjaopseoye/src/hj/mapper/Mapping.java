@@ -10,10 +10,12 @@ import hj.common.ControllerForm;
 import hj.controller.BoardController;
 import hj.controller.FriendController;
 import hj.controller.GubunController;
+import hj.controller.HotPlaceController;
 import hj.controller.LogicController;
 import hj.controller.MemberController;
 import hj.controller.MessageController;
 import hj.controller.ReplyController;
+import hj.controller.StoreController;
 import hj.controller.TestController;
 
 public class Mapping {
@@ -70,6 +72,12 @@ public class Mapping {
 			else if("message".equals(Ctrname)) {
 				ctr = new MessageController();
 				
+			}
+			else if("hotplace".equals(Ctrname)) {
+				ctr = new HotPlaceController();
+			}
+			else if("store".equals(Ctrname)) {
+				ctr = new StoreController();
 			}
 			else if("".equals(Ctrname)) {
 				

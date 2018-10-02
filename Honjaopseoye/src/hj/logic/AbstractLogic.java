@@ -10,9 +10,11 @@ import org.apache.log4j.Logger;
 import hj.dao.BoardDao;
 import hj.dao.FriendDao;
 import hj.dao.GubunDao;
+import hj.dao.HotPlaceDao;
 import hj.dao.MemberDao;
 import hj.dao.MessageDao;
 import hj.dao.ReplyDao;
+import hj.dao.StoreDao;
 import hj.dao.TestDao;
 
 public abstract class AbstractLogic {
@@ -24,6 +26,8 @@ public abstract class AbstractLogic {
 	GubunDao gdao = new GubunDao();
 	MemberDao mdao = new MemberDao();
 	FriendDao fdao = new FriendDao();
+	StoreDao sdao = new StoreDao();
+	HotPlaceDao hdao = new HotPlaceDao();
 	List<Map<String, Object>> list = null;
 	Map<String, String> wMap = null;
 	Map<String, Object> rMap = new HashMap<String,Object>();
@@ -77,8 +81,14 @@ public abstract class AbstractLogic {
 			list = messagedao.getmsgBox(pMap);
 			rMap.put("list", list);
 		}
+		else if("unReadMsg".equals(Daoname)) {
+			String result = null;
+			result = messagedao.unReadMsg(pMap);
+			rMap.put("String", result);
+		}
 		else {
 			logger.info("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ DAO클래스 호출 실패 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+			logger.info("rMap null로 리턴");
 			return null;
 		}
 		return rMap;
@@ -194,6 +204,44 @@ public abstract class AbstractLogic {
 			int result = mdao.update(pMap);
 			rMap.put("int", result);
 		}
+		else if("check".equals(Daoname)) {
+			logger.info("AbLogic : check 호출 성공");
+			String result = mdao.check(pMap);
+			rMap.put("check", result);
+		}else if("check2".equals(Daoname)) {
+			logger.info("AbLogic : check2 호출 성공");
+			String result = mdao.check2(pMap);
+			rMap.put("check2", result);
+		}
+		else if("idSearch".equals(Daoname)) {
+	         list = mdao.idSearch(pMap);
+	         rMap.put("idSearch", list);
+	    }
+	    else if("e_idSearch".equals(Daoname)) {
+	    	logger.info("e_idSearch 호출 성공");
+	         list = mdao.e_idSearch(pMap);
+	         rMap.put("e_idSearch", list);
+	    }
+	    else if("pwCheck".equals(Daoname)) {
+	    	logger.info("AbLogic : pwCheck 호출 성공");
+	    	String result = mdao.pwCheck(pMap);
+	    	rMap.put("pwCheck", result);
+	    }
+	    else if("pwSearch".equals(Daoname)) {
+	    	logger.info("AbLogic : pwSearch 호출 성공");
+	    	list = mdao.pwSearch(pMap);
+	    	rMap.put("pwSearch", list);
+	    }
+	    else if("pwCheck2".equals(Daoname)) {
+	    	logger.info("AbLogic : pwCheck2 호출 성공");
+	    	String result = mdao.pwCheck2(pMap);
+	    	rMap.put("pwCheck2", result);
+	    }
+	    else if("e_pwSearch".equals(Daoname)) {
+	    	logger.info("AbLogic : e_pwSearch 호출 성공");
+	    	list = mdao.e_pwSearch(pMap);
+	    	rMap.put("e_pwSearch", list);
+	    }
 		else {
 			logger.info("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ DAO클래스 호출 실패 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 			rMap = null;
@@ -229,6 +277,32 @@ public abstract class AbstractLogic {
 			rMap = null;
 		}
 		return rMap;
+	}
+	public Map<String,Object> gethotPlace(Map<String,Object> pMap) throws Exception{
+		
+		if("select".equals(Daoname)) {
+			logger.info("getHotPlace호출");
+			list = hdao.select(pMap);
+			rMap.put("list", list);
+		}
+		else {
+			logger.info("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ DAO클래스 호출 실패 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+			return null;
+		}
+		return rMap;
+	}
+	public int storeAdd(Map<String,Object> pMap) throws Exception{
+		
+		if("matjip".equals(Daoname)) {
+			logger.info("storeAdd호출");
+			result = sdao.insert(pMap); 
+		}
+		else {
+			logger.info("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ DAO클래스 호출 실패 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+			return 0;
+		}
+		
+		return result;
 	}
 //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ empty호출시 dao로 바로 분기 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@//
 		public Map<String, Object> empty(Map<String, Object> pMap) throws Exception {

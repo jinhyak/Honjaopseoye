@@ -397,7 +397,7 @@
 		var dong = $('#dong').text();
 		var address = $('#p_addr').val();
 		alert(address);
-		cmm_window_popup("./address.jsp?zdo="+dos+"&sigu="+si+"&dong="+dong+"&address="+address, 600, 600, "상세주소 조회창")
+		cmm_window_popup("./address.jsp?zdo="+dos+"&sigu="+si+"&dong="+dong+"&address="+address, 800, 600, "상세주소 조회창")
 	}
 //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 성별 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 		$('#gend').change(function (){

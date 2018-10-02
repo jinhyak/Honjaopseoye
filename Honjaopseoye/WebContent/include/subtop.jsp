@@ -56,6 +56,9 @@ var mem_gender = '<%=mem_gender%>'
 var email = '<%=email%>'
 var domain = '<%=domain%>'
 var mem_pw = '<%=mem_pw%>'
+var point = '<%=pt%>'
+var level = '<%=lv%>'
+var msg_count=0;
 </script>
 <head>
 <%@include file="./commonUI.jsp" %>
@@ -74,8 +77,8 @@ var mem_pw = '<%=mem_pw%>'
         <div class="menu">
           <a class="item" href="javascript:mlist()">회원정보</a>
           <a class="item" href="../notice/notice.jsp">공지사항</a>
-          <a class="item" href="#">혼자페이지</a>
-          <a class="item" href="#">만남페이지</a>
+          <a class="item" href="../solo/solo.jsp">혼자페이지</a>
+          <a class="item" href="../together/together.jsp">만남페이지</a>
           <div class="divider"></div>
           <div class="header">보조 메뉴</div>
           <div class="item">

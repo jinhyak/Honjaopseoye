@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -16,6 +17,9 @@ import hj.common.Model;
 import hj.mapper.Mapping;
 import org.apache.log4j.*;
 
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+
 
 public class DispatcherServlet extends HttpServlet{
 	Logger logger = Logger.getLogger(this.getClass());
@@ -25,10 +29,19 @@ public class DispatcherServlet extends HttpServlet{
 		Map<String, Object> pMap = new HashMap<String,Object>();
 		req.setCharacterEncoding("utf-8");
 		HashMapBinder hmb = new HashMapBinder(req);
-		hmb.bind(pMap);
 		Model view = null;
 		Mapping Mapping = new Mapping();
-//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 한글설정 euc-kr @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+		hmb.bind(pMap);
+/*	    ServletContext cxt = getServletContext();
+	    logger.info("경로 : " + cxt);
+	    String direc = cxt.getRealPath("/upload"); // 이 파일에 저장됨
+	    String path = "C:\\Users\\512\\git\\Honjaopseoye\\Honjaopseoye\\WebContent\\boardList\\images";
+	    logger.info("경로 : " + direc);
+	    int maxsize = 1024 * 1024 * 100; // 파일의 용량
+	    String encoding = "EUC-KR"; // 파일 이름의 글자 타입
+	    MultipartRequest multipartRequest = new MultipartRequest(req, path, maxsize, encoding, new DefaultFileRenamePolicy());
+	    String img_file = multipartRequest.getParameter("img_file"); // 이미지
+*///@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 한글설정 euc-kr @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 컨트롤러를 정해줌 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 		ctr = Mapping.mapping(req,wMap);
 		if(ctr==null) {

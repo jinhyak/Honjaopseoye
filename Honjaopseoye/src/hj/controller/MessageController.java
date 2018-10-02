@@ -55,6 +55,12 @@ public class MessageController implements ControllerForm{
 				view.setPath("../../member/message/result/blist.jsp");
 				view.setRedirect(false);
 			}
+			else if("unReadMsg".equals(map.get("Daoname"))) {
+				rMap = logic.empty(pMap);
+				str = rMap.get("String").toString();
+				view.setPath("../../member/message/result/result.jsp?result="+str);
+				view.setRedirect(true);
+			}
 			else {
 				view.setPath("../test/error.jsp");
 			}

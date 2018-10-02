@@ -29,8 +29,8 @@
         </a>
 	        <a class="active item" href="../notice/notice.jsp">공지사항</a>
 	        <a class="item" href="../notice/qna.jsp">Q&A</a>
-	        <a class="item" href="#">혼밥하자</a>
-	        <a class="item" href="#">인사하자</a>
+	        <a class="item" href="../honja/honja_main.jsp">혼밥하자</a>
+	        <a class="item" href="../together/together.jsp">인사하자</a>
 	        <div class="ui grid">
 	        <div class="four wide two wide large screen one wide widescreen column"></div>
 	        <div class="four wide two wide large screen one wide widescreen column">

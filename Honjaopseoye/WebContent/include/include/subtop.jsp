@@ -77,8 +77,8 @@ var msg_count=0;
         <div class="menu">
           <a class="item" href="javascript:mlist()">회원정보</a>
           <a class="item" href="../../notice/notice.jsp">공지사항</a>
-          <a class="item" href="#">혼자페이지</a>
-          <a class="item" href="#">만남페이지</a>
+          <a class="item" href="../../solo/solo.jsp">혼자페이지</a>
+          <a class="item" href="../../together/together.jsp">만남페이지</a>
           <div class="divider"></div>
           <div class="header">보조 메뉴</div>
           <div class="item">
@@ -124,19 +124,31 @@ var msg_count=0;
   			url:"../../message/empty/allUnReadMsg.test",
   			data:param,
   			success:function(data){
-  				$("#msg_count").text(msg_count);
+  				$("#msg_count").html(data);
   			},
   			error:function(data){
   				alert("메시지 전달 오류")
   			}
   		})
   	}
-  	$(document).ready(function(){
+  	function getInfinityMsg(){
   		if(mem_id!='비회원'){
 		msgCount();
   		}
   		else{
-  			
+  			alert("비회원or오류")
+  			return;
+  		}
+  	}
+  	$(document).ready(function(){
+  		if(mem_id!='비회원'){
+			setInterval(function() {
+				msgCount();
+			}, 1000);
+  		}
+  		else{
+  			alert("비회원or오류")
+  			return;
   		}
   	})
   </script>

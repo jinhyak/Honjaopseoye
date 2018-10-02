@@ -102,8 +102,8 @@
 	<div class="six wide tablet eight text wide computer column" style="text-align: center; padding-bottom: 20px;">
 		<div class="ui big icon input">
 			<a href="../join/gaip.jsp" style="border-right: solid thin; padding-right: 7px; margin-right: 7px; margin-left: 7px">회원가입</a>
-			<a href="javascript:alert('ID찾기')" style="border-right: solid thin; padding-right: 7px; margin-right: 7px;">ID찾기</a>
-			<a href="javascript:alert('비번찾기')">비번찾기</a>
+			<a href="./idSearch.jsp" style="border-right: solid thin; padding-right: 7px; margin-right: 7px;">ID찾기</a>
+			<a href="./pwSearch.jsp">비번찾기</a>
 		</div>
 	</div>
 	<div class="ui container" style="text-align: center;width:222px">

@@ -37,4 +37,68 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	       )  as MEM_NAME
 	     from dual 
 	</select>
+		<select id="check" resultType="String" parameterType="map">
+		select nvl2(
+        (select '1' from dual where exists(select mem_id from members where mem_name = #{ins_name}))
+       ,(select nvl((select '1' from members where mem_name=#{ins_name} and mem_tel =#{mem_tel}), '-1') from dual)
+       ,'0'
+       ) as mem_id
+       from dual
+	</select>
+	<select id="check2" resultType="String" parameterType="map">
+		select nvl2(
+        (select '1' from dual where exists(select mem_id from members where mem_name = #{e_name}))
+       ,(select nvl((select '1' from members where mem_name=#{e_name} and mem_email =#{e_mail}), '-1') from dual)
+       ,'0'
+       ) as mem_id
+       from dual
+	</select>
+	<select id="idSearch" resultType="map" parameterType="map">
+      select mem_id, mem_name from members
+         <if test="ins_name!=null"> 
+            where mem_name = #{ins_name}<!-- map의 키값(내가 화면에서 넘긴 name 값과 같을 것) -->
+         </if>
+         <if test="mem_tel!=null">
+            and mem_tel = #{mem_tel}
+         </if>
+   </select>
+   <select id="e_idSearch" resultType="map" parameterType="map">
+      select mem_id, mem_name from members
+           where mem_name = #{e_name}
+            and mem_email = #{e_mail}
+   </select>
+   	<select id="pwCheck" resultType="String" parameterType="map">
+		select nvl2(
+        (select '1' from dual where exists(select mem_pw from members where mem_id = #{mem_id}))
+       ,(select nvl((select '1' from members where mem_id=#{mem_id} and mem_tel =#{mem_tel}), '-1') from dual)
+       ,'0'
+       ) as mem_pw
+       from dual
+	</select>
+	<select id="pwCheck2" resultType="String" parameterType="map">
+		select nvl2(
+        (select '1' from dual where exists(select mem_pw from members where mem_id = #{e_id}))
+       ,(select nvl((select '1' from members where mem_id=#{e_id} and mem_email =#{e_mail}), '-1') from dual)
+       ,'0'
+       ) as mem_pw
+       from dual
+	</select>
+   <select id="pwSearch" resultType="map" parameterType="map">
+   	select mem_pw, mem_name from members
+   		<if test="mem_id!=null">
+   			where mem_id = #{mem_id}
+   		</if>
+   		<if test="mem_tel!=null">
+   			and mem_tel = #{mem_tel}
+   		</if>
+   </select>
+   <select id="e_pwSearch" resultType="map" parameterType="map">
+   	select mem_pw, mem_name from members
+   		<if test="e_id!=null">
+   			where mem_id = #{e_id}
+   		</if>
+   		<if test="e_mail!=null">
+   			and mem_email = #{e_mail}
+   		</if>
+   </select>
 </mapper>

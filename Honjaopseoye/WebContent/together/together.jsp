@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
- <%@ include file="../../include/include/subtop.jsp" %>
+ <%@ include file="../include/subtop.jsp" %>
  
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ header @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 <div class="ui header" style="margin-left: 150px;margin-right: 150px; margin-top: 100px;margin-bottom: 100px">
@@ -26,40 +26,43 @@
 						</div>
 						<div class="center aligned column">
 							<div class="ui large header">
-							 	회원정보
+							 	같이 페이지
 							</div>
 						</div>
 						<div class="right aligned column">
 						</div>
 						<div class="right aligned column">
 						</div>
-						<div class="right aligned column">
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 목록 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+						<div class="right aligned column">
 							<div class="ui segment button" style="width:100%">
-								<a href="#"> 회원 정보 </a>
+								<a href="../store/storeAdd.jsp"> 가게 등록 </a>
+							</div>
+							<div class="ui segment button" style="width:100%">
+								<a href="#"> 같이 페이지 </a>
 							</div>
 						</div>
 						<div class="right aligned column">
 							<div class="ui segment button" style="width:100%">
-								<a href="#"> 회원 탈퇴 </a>
+								<a href="#"> 가게 정보 </a>
 							</div>
 						</div>
 						<div class="right aligned column">
 							<div class="ui segment button" style="width:100%">
-								<a href="#"> 친구 관리 </a>
+								<a href="../store/reservation/reserv.jsp"> 예약 정보 </a>
 							</div>
 						</div>
 						<div class="right aligned column">
 							<div class="ui segment button" style="width:100%">
-								<a href="#"> 친구 삭제 </a>
+								<a href="../store/reservation/sView.jsp"> 예약 하기 </a>
 							</div>
 						</div>
 						<div class="right aligned column">
 							<div class="ui segment button" style="width:100%">
-								<a href="#"> 그룹 관리 </a>
+								<a href="../boardList/boardList.jsp"> 게시판 등록 </a>
 							</div>
 						</div>
-					</div>	
+					</div>
 				</div>
 			</div>
 		</div>
@@ -71,7 +74,7 @@
 						<div class="center aligned column">
 							<div class="ui segment">
 								<div class="ui large header">
-							 	           아이디 찾기
+							 	         같이 페이지
 								</div>
 							</div>
 						</div>
@@ -83,7 +86,6 @@
 								
 								
 								
-								<a href="#"> 회원 정보 form </a>
 								
 								
 								
@@ -102,6 +104,6 @@
 	</div>
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ header @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 </div>
-<%@ include file="../../include/bottom.jsp" %>
+<%@ include file="../include/bottom.jsp" %>
 </body>
 </html>

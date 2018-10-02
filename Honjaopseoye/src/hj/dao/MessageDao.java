@@ -74,7 +74,7 @@ public class MessageDao implements DaoForm{
 			result = sqls.selectOne("allUnReadMsg", pMap);
 		} catch (IOException e) {
 			e.printStackTrace();
-			logger.info("UnreadMsg 메소드 오류");
+			logger.info("allUnReadMsg 메소드 오류");
 			result="";
 		}
 		sqls.close();
@@ -107,6 +107,19 @@ public class MessageDao implements DaoForm{
 		}
 		return list;
 		
+	}
+	public String unReadMsg(Map<String, Object> pMap) {
+		String result = "";
+		try {
+			sqls = dbmgr.connection();
+			result = sqls.selectOne("unReadMsg", pMap);
+		} catch (IOException e) {
+			e.printStackTrace();
+			logger.info("unReadMsg 메소드 오류");
+			result="";
+		}
+		sqls.close();
+		return result;
 	}
 
 }

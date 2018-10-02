@@ -19,4 +19,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getmsgBox" parameterType="map" resultType="map">
 		 select * from msg where msg_no in (select max(msg_no) from msg where msg_to = #{mem_id} or msg_from = #{mem_id} group by msg_from,msg_to)
 	</select>
+	<select id="unReadMsg" parameterType="map" resultType="String">
+		select count(msg_read) as MSG_READ from msg where msg_from = #{fri_id} and msg_to=#{mem_id} and msg_read=0
+	</select>
 </mapper>

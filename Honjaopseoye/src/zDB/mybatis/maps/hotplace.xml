@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hotplace">
+	<select id="select" parameterType="java.util.Map" resultType="java.util.Map">
+		select * from store
+	</select>
+	<insert id="insert" parameterType="java.util.Map">
+		insert into test(testno,test1,test2) value(#{testno},#{test1},#{test2})
+	</insert>
+	<!--  <select id="showHotplace" parameterType="java.util.Map" resultType="java.util.Map">
+		select *
+			from (select RANK() OVER (ORDER BY store_hit DESC )"랭크", 
+    		store_name,store_img,store_price,store_hit from store)    
+			where "랭크" <=2
+	</select>-->
+	
+</mapper>
